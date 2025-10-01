@@ -1,11 +1,20 @@
 import wollok.game.*
 import personaje.*
+import pistola.*
 
 program ejemplo {
   game.boardGround("fondo.png")
   game.width(10)
   game.height(10)
+  game.addVisual(pistola)
   game.addVisualCharacter(luis)
   
+  game.onCollideDo(luis, { elemento =>
+   elemento.colisionarCon(luis)
+  })
+
+  keyboard.h().onPressDo({game.say(luis, "hola!")})
+
+
   game.start()
 }
