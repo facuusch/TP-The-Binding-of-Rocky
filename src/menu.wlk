@@ -9,10 +9,6 @@ object main_menu{
     var property personajeSeleccionado = 0
     var property seleccionadoString = ""
 
-    // method setPersonajes(lista) {
-    //     personajes = lista
-    // }
-
     method avanzarPersonaje() {
         personajeSeleccionado = personajeSeleccionado + 1
         if(personajeSeleccionado >= (personajes.size())){
@@ -20,7 +16,6 @@ object main_menu{
         }
 
         seleccionadoString = personajeSeleccionado.toString()
-        game.say(self, "Personaje seleccionado:" + seleccionadoString)
         spriteMenu = "main_menu_" + personajeSeleccionado + ".png"
 
     }
@@ -31,7 +26,6 @@ object main_menu{
         }
 
         seleccionadoString = personajeSeleccionado.toString()
-        game.say(self, "Personaje seleccionado:" + seleccionadoString)
         spriteMenu = "main_menu_" + personajeSeleccionado + ".png"
     }
 
