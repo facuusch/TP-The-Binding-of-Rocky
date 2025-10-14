@@ -2,7 +2,7 @@ import wollok.game.*
 import personaje.*
 import items.*
 import menu.*
-
+import enemigos.*
 
 program theBindingOfRocky {
   game.boardGround("fondo.png")
@@ -25,6 +25,7 @@ program theBindingOfRocky {
   keyboard.enter().onPressDo({
     game.removeVisual(main_menu)
     game.addVisual(pistola)
+    game.addVisual(mosca)
     player = main_menu.obtenerPersonajeActual()
     
     game.addVisualCharacter(player)
