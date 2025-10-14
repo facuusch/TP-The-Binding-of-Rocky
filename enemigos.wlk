@@ -8,7 +8,7 @@ class Enemigos{
     // bajar vida al personaje
   }
 
-  method tick(){
+  method onTick(){
 
   }
 }
