@@ -1,11 +1,12 @@
 import wollok.game.*
 import personaje.*
-import pistola.*
+import items.*
 
-program ejemplo {
+program theBindingOfRocky {
   game.boardGround("fondo.png")
-  game.width(10)
-  game.height(10)
+  game.width(16)
+  game.height(16)
+  game.cellSize(50)
   game.addVisual(pistola)
   game.addVisualCharacter(luis)
   

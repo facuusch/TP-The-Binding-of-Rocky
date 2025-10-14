@@ -1,12 +1,14 @@
 import wollok.game.*
 import utils.*
 
-object pistola {
+class Item {
   var property position = posicionAleatoria.calcular()
   
-  method colisionarCon (luis){
-    luis.colisionarCon(luis)
+  method colisionarCon (personaje){
+    personaje.agarrarItem(self)
   }
+}
 
+object pistola inherits Item{
   method image() = "pistola.png"
 }
