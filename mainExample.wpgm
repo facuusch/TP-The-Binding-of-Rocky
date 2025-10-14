@@ -3,6 +3,7 @@ import personaje.*
 import items.*
 import menu.*
 
+
 program theBindingOfRocky {
   game.boardGround("fondo.png")
   game.width(16)
@@ -11,16 +12,21 @@ program theBindingOfRocky {
 
 
   const personajes = [blito, luis]
+  main_menu.setPersonajes(personajes)
   game.addVisual(main_menu)
-
-  game.addVisual(pistola)
-  const player = luis
-  game.addVisualCharacter(player)
+  const player = blito
+  
+  
   
   game.onCollideDo(player, { elemento =>
    elemento.colisionarCon(player)
   })
 
+  keyboard.enter().onPressDo({
+    game.addVisual(pistola)
+    
+    game.addVisualCharacter(player)
+  })
   keyboard.h().onPressDo({game.say(player, "hola!")})
   keyboard.l().onPressDo({main_menu.cambiarPersonaje()})
 
