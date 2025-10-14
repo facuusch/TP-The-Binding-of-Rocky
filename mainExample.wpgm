@@ -1,20 +1,28 @@
 import wollok.game.*
 import personaje.*
 import items.*
+import menu.*
 
 program theBindingOfRocky {
   game.boardGround("fondo.png")
   game.width(16)
   game.height(16)
   game.cellSize(50)
+
+
+  const personajes = [blito, luis]
+  game.addVisual(main_menu)
+
   game.addVisual(pistola)
-  game.addVisualCharacter(luis)
+  const player = luis
+  game.addVisualCharacter(player)
   
-  game.onCollideDo(luis, { elemento =>
-   elemento.colisionarCon(luis)
+  game.onCollideDo(player, { elemento =>
+   elemento.colisionarCon(player)
   })
 
-  keyboard.h().onPressDo({game.say(luis, "hola!")})
+  keyboard.h().onPressDo({game.say(player, "hola!")})
+  keyboard.l().onPressDo({main_menu.cambiarPersonaje()})
 
 
   game.start()
