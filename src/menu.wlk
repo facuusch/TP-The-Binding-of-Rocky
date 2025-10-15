@@ -7,7 +7,6 @@ object main_menu{
     method image() = spriteMenu
     const personajes = [blito, gabi, tuca, manu, facu]
     var property personajeSeleccionado = 0
-    var property seleccionadoString = ""
 
     method avanzarPersonaje() {
         personajeSeleccionado = personajeSeleccionado + 1
@@ -15,7 +14,6 @@ object main_menu{
             personajeSeleccionado = 0
         }
 
-        seleccionadoString = personajeSeleccionado.toString()
         spriteMenu = "main_menu_" + personajeSeleccionado + ".png"
 
     }
@@ -25,7 +23,6 @@ object main_menu{
             personajeSeleccionado = (personajes.size() - 1)
         }
 
-        seleccionadoString = personajeSeleccionado.toString()
         spriteMenu = "main_menu_" + personajeSeleccionado + ".png"
     }
 

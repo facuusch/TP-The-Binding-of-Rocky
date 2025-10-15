@@ -10,7 +10,6 @@ class Personaje {
   method agarrarItem(item){
     game.removeVisual(item)
     self.cambiarSprite(spriteAlternativo)
-    game.say(self, "aaa")
   }
 
   method cambiarSprite(nuevoSprite){

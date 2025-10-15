@@ -11,9 +11,6 @@ program theBindingOfRocky {
   game.height(16)
   game.cellSize(50)
 
-
-  
-  //main_menu.setPersonajes(personajes)
   game.addVisual(main_menu)
   var player = blito
 
@@ -23,14 +20,14 @@ program theBindingOfRocky {
     game.addVisual(mosca)
     player = main_menu.obtenerPersonajeActual()
     
-    game.addVisualCharacter(player)
     
-    game.onCollideDo(player, { elemento =>
-      elemento.colisionarCon(player)
-    })
+    
+    game.addVisualCharacter(player)
   })
 
-  
+  game.onCollideDo(player, { elemento =>
+      elemento.colisionarCon(player)
+  })
 
   //keyboard.h().onPressDo({game.say(player, "hola!")})
   //keyboard.l().onPressDo({main_menu.cambiarPersonaje()})

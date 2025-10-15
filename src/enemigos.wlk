@@ -14,8 +14,8 @@ class Enemigo{
 
 object mosca inherits Enemigo {
   // Define la velocidad y dirección de la mosca
-  var velocidadY = 1
-  
+  //var velocidadY = 1
+  var property position = posicionAleatoria.calcular()
   method image() = "mosca.png"
   
   // onTick() es donde se actualiza el movimiento de la mosca
