@@ -6,7 +6,12 @@ class Item {
   
   method colisionarCon (personaje){
     personaje.agarrarItem(self)
+    game.say(self, "bbb")
   }
+}
+
+class ItemBasico {
+
 }
 
 object pistola inherits Item{

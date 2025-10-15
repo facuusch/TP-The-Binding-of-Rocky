@@ -4,32 +4,30 @@ import wollok.game.*
 class Personaje {
   var property position = game.origin()
   var property spriteBasico = "_basico.png"
-  var property spriteAlternativo = "_armado.png"
+  var property spriteAlternativo = "_alternativo.png"
+  var property spriteActual = spriteBasico
 
   method agarrarItem(item){
     game.removeVisual(item)
     self.cambiarSprite(spriteAlternativo)
+    game.say(self, "aaa")
   }
 
   method cambiarSprite(nuevoSprite){
-    //sprite = nuevoSprite
+    spriteActual = nuevoSprite
   }
 
-  method agarrarPistola(elemento){
-    //sprite = elemento + "_pistola.png"
-  }
-
-  method image() = spriteBasico
+  method image() = spriteActual
 }
 
 object blito inherits Personaje{
-  var property spriteBlito = "blito"
-  // override method image() = spriteBlito + super()
   override method image() = "" + self + super()
-  //override var property sprite = "blito_basico.png"
 }
 
-object gabi inherits Personaje{}
+object gabi inherits Personaje{
+  var property spriteGabi = "luis"
+  override method image() = spriteGabi + super()
+}
 
 object tuca inherits Personaje{}
 
