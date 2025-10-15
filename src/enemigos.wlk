@@ -18,6 +18,5 @@ object mosca inherits Enemigo {
   var property position = posicionAleatoria.calcular()
   method image() = "mosca.png"
   
-  override method onTick() {
- 
-}
+  //override method onTick() {}
+  }
