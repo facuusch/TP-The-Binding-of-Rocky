@@ -12,29 +12,22 @@ program theBindingOfRocky {
   game.cellSize(50)
 
   game.addVisual(main_menu)
-  var player = blito
-<<<<<<< HEAD
   
-  
-  
-  game.onCollideDo(player, {elemento => elemento.colisionarCon(player)})
-=======
->>>>>>> 024713c6d415f2aff4bae4410f51e8a37f47a17f
 
   keyboard.enter().onPressDo({
     game.removeVisual(main_menu)
     game.addVisual(pistola)
     game.addVisual(mosca)
-    player = main_menu.obtenerPersonajeActual()
-    
-    
+    const player = main_menu.obtenerPersonajeActual()
     
     game.addVisualCharacter(player)
+
+    game.onCollideDo(player, { elemento =>
+      elemento.colisionarCon(player)
+    })
   })
 
-  game.onCollideDo(player, { elemento =>
-      elemento.colisionarCon(player)
-  })
+  
 
   //keyboard.h().onPressDo({game.say(player, "hola!")})
   //keyboard.l().onPressDo({main_menu.cambiarPersonaje()})

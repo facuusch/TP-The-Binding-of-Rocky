@@ -6,10 +6,18 @@ class Personaje {
   var property spriteBasico = "_basico.png"
   var property spriteAlternativo = "_alternativo.png"
   var property spriteActual = spriteBasico
+  var property vida = 10
+  var property danio = 3
+  var property escudo = 6
 
   method agarrarItem(item){
     game.removeVisual(item)
     self.cambiarSprite(spriteAlternativo)
+  }
+
+  method asumirDanio(danioEnemigo){
+    //cambiar sprite a un sprite de golpe capaz?
+    vida = vida - (danioEnemigo / escudo).truncate(0)
   }
 
   method cambiarSprite(nuevoSprite){
