@@ -13,6 +13,13 @@ program theBindingOfRocky {
 
   game.addVisual(main_menu)
   var player = blito
+<<<<<<< HEAD
+  
+  
+  
+  game.onCollideDo(player, {elemento => elemento.colisionarCon(player)})
+=======
+>>>>>>> 024713c6d415f2aff4bae4410f51e8a37f47a17f
 
   keyboard.enter().onPressDo({
     game.removeVisual(main_menu)
