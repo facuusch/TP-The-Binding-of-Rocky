@@ -6,6 +6,7 @@ import menu.*
 
 program theBindingOfRocky {
   game.boardGround("fondo.png")
+  game.title("The binding of Rocky")
   game.width(16)
   game.height(16)
   game.cellSize(50)
@@ -15,12 +16,6 @@ program theBindingOfRocky {
   //main_menu.setPersonajes(personajes)
   game.addVisual(main_menu)
   var player = blito
-  
-  
-  
-  game.onCollideDo(player, { elemento =>
-   elemento.colisionarCon(player)
-  })
 
   keyboard.enter().onPressDo({
     game.removeVisual(main_menu)
@@ -28,7 +23,14 @@ program theBindingOfRocky {
     player = main_menu.obtenerPersonajeActual()
     
     game.addVisualCharacter(player)
+    
+    game.onCollideDo(player, { elemento =>
+      elemento.colisionarCon(player)
+    })
   })
+
+  
+
   //keyboard.h().onPressDo({game.say(player, "hola!")})
   //keyboard.l().onPressDo({main_menu.cambiarPersonaje()})
   keyboard.right().onPressDo({

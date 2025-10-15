@@ -1,8 +1,8 @@
 import wollok.game.*
 import utils.*
 
-class Enemigos{
-  var property position = posicionAleatoria.calcular()
+class Enemigo{
+  //var property position = posicionAleatoria.calcular()
   
   method colisionarCon(personaje){
     // bajar vida al personaje
@@ -14,11 +14,7 @@ class Enemigos{
 }
 
 object mosca inherits Enemigo {
+  method image() = "mosca.png"
+  var property position = posicionAleatoria.calcular()
 
-
-  method image() { 
-    return "mosca.png"
-
-
-  }
 }
