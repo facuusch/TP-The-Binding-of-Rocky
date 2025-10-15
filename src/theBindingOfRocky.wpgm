@@ -18,9 +18,7 @@ program theBindingOfRocky {
   
   
   
-  game.onCollideDo(player, { elemento =>
-   elemento.colisionarCon(player)
-  })
+  game.onCollideDo(player, {elemento => elemento.colisionarCon(player)})
 
   keyboard.enter().onPressDo({
     game.removeVisual(main_menu)
