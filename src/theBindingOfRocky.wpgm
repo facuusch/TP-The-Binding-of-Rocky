@@ -63,13 +63,12 @@ object juego{
 
   method iniciarJuego(){
     iniciado = true
-    game.say(player, "la pistola fue agregada")
     game.addVisual(pistola)
     game.addVisual(mosca)
 
     player = mainMenu.obtenerPersonajeActual()
     game.addVisualCharacter(player)
-    player.reiniciarStats()
+    //player.reiniciarStats()
 
     game.onCollideDo(player, { elemento =>
         elemento.colisionarCon(player)

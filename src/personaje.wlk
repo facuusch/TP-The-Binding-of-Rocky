@@ -13,9 +13,6 @@ class Personaje {
   var property danio = 3
   var property escudo = 4
 
-  method vida() = vida
-
-
   method reiniciarStats(){
     position = game.at(7,0)
     spriteActual = spriteBasico
@@ -30,7 +27,6 @@ class Personaje {
   }
 
   method asumirDanio(danioEnemigo){
-    //cambiar sprite a un sprite de golpe capaz?
     vida = vida - (danioEnemigo / escudo).truncate(0)
     if(vida <= 0 ){
       juego.terminarJuego()
@@ -44,7 +40,6 @@ class Personaje {
   method cambiarSprite(nuevoSprite){
     spriteActual = nuevoSprite
   }
-
   method image() = spriteActual
 }
 
@@ -53,8 +48,7 @@ object blito inherits Personaje{
 }
 
 object gabi inherits Personaje{
-  var property spriteGabi = "luis"
-  override method image() = spriteGabi + super()
+  override method image() = "" + self + super()
 }
 
 object tuca inherits Personaje{}
@@ -62,3 +56,8 @@ object tuca inherits Personaje{}
 object manu inherits Personaje{}
 
 object facu inherits Personaje{}
+
+class Proyectil {
+  var property position =
+
+}
