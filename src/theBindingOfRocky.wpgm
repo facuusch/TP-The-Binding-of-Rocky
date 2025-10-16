@@ -12,13 +12,14 @@ program theBindingOfRocky {
   game.cellSize(50)
 
   game.addVisual(main_menu)
+  var player = null
   
 
   keyboard.enter().onPressDo({
     game.removeVisual(main_menu)
     game.addVisual(pistola)
     game.addVisual(mosca)
-    const player = main_menu.obtenerPersonajeActual()
+    player = main_menu.obtenerPersonajeActual()
     
     game.addVisualCharacter(player)
 
@@ -29,7 +30,7 @@ program theBindingOfRocky {
 
   
 
-  //keyboard.h().onPressDo({game.say(player, "hola!")})
+  keyboard.h().onPressDo({game.say(player, "me queda " + player.vida() + " vida")})
   //keyboard.l().onPressDo({main_menu.cambiarPersonaje()})
   keyboard.right().onPressDo({
     if(game.hasVisual(main_menu)){

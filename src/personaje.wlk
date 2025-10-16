@@ -1,5 +1,5 @@
 import wollok.game.*
-
+import menu.*
 
 class Personaje {
   var property position = game.origin()
@@ -8,7 +8,9 @@ class Personaje {
   var property spriteActual = spriteBasico
   var property vida = 10
   var property danio = 3
-  var property escudo = 6
+  var property escudo = 4
+
+  method vida() = vida
 
   method agarrarItem(item){
     game.removeVisual(item)
@@ -18,6 +20,14 @@ class Personaje {
   method asumirDanio(danioEnemigo){
     //cambiar sprite a un sprite de golpe capaz?
     vida = vida - (danioEnemigo / escudo).truncate(0)
+    if(vida <= 0 ){
+      game.removeVisual(self)
+      game.addVisual(game_over)
+    }
+  }
+
+  method disparar(){
+    
   }
 
   method cambiarSprite(nuevoSprite){

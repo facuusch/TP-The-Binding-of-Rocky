@@ -28,3 +28,11 @@ object main_menu{
 
     method obtenerPersonajeActual() = personajes.get(personajeSeleccionado)
 }
+
+object game_over{
+    var property position = game.origin()
+    method image() = ""
+    method reiniciar(){
+        //averiguar si hay alguna forma de reiniciar el game con un metodo
+    }
+}
