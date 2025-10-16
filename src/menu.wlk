@@ -1,5 +1,6 @@
 import wollok.game.*
 import personaje.*
+import src.theBindingOfRocky.juego
 
 object main_menu{
     var property position = game.origin()
@@ -7,6 +8,8 @@ object main_menu{
     method image() = spriteMenu
     const personajes = [blito, gabi, tuca, manu, facu]
     var property personajeSeleccionado = 0
+
+    
 
     method avanzarPersonaje() {
         personajeSeleccionado = personajeSeleccionado + 1
@@ -31,8 +34,10 @@ object main_menu{
 
 object game_over{
     var property position = game.origin()
-    method image() = ""
+    method image() = "game_over.png"
     method reiniciar(){
+        juego.iniciar_juego()
+        game.removeVisual(self)
         //averiguar si hay alguna forma de reiniciar el game con un metodo
     }
 }

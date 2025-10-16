@@ -2,7 +2,7 @@ import wollok.game.*
 import menu.*
 
 class Personaje {
-  var property position = game.origin()
+  var property position = game.at(7,0)
   var property spriteBasico = "_basico.png"
   var property spriteAlternativo = "_alternativo.png"
   var property spriteActual = spriteBasico
@@ -11,6 +11,15 @@ class Personaje {
   var property escudo = 4
 
   method vida() = vida
+
+
+  method spawnearPersonaje(){
+    position = game.at(7,0)
+    //spriteActual = spriteBasico
+    vida = 10
+    danio = 3
+    escudo = 4
+  }
 
   method agarrarItem(item){
     game.removeVisual(item)
@@ -27,7 +36,7 @@ class Personaje {
   }
 
   method disparar(){
-    
+
   }
 
   method cambiarSprite(nuevoSprite){

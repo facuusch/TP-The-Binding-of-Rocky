@@ -7,42 +7,58 @@ import enemigos.*
 program theBindingOfRocky {
   game.boardGround("fondo.png")
   game.title("The binding of Rocky")
-  game.width(16)
-  game.height(16)
+  game.width(15)
+  game.height(15)
   game.cellSize(50)
 
-  game.addVisual(main_menu)
-  var player = null
+  juego.iniciar_juego()
+
   
 
+  
   keyboard.enter().onPressDo({
-    game.removeVisual(main_menu)
-    game.addVisual(pistola)
-    game.addVisual(mosca)
-    player = main_menu.obtenerPersonajeActual()
-    
-    game.addVisualCharacter(player)
-
-    game.onCollideDo(player, { elemento =>
-      elemento.colisionarCon(player)
-    })
-  })
-
-  
-
-  keyboard.h().onPressDo({game.say(player, "me queda " + player.vida() + " vida")})
-  //keyboard.l().onPressDo({main_menu.cambiarPersonaje()})
-  keyboard.right().onPressDo({
-    if(game.hasVisual(main_menu)){
-      main_menu.avanzarPersonaje()
+    if(game.hasVisual(game_over)){
+      game_over.reiniciar()
     }
   })
-  keyboard.left().onPressDo({
-    if(game.hasVisual(main_menu)){
-      main_menu.retrocederPersonaje()
-    }
-  })
+  //keyboard.h().onPressDo({game.say(player, "me queda " + player.vida() + " vida")})
+ 
 
 
   game.start()
+}
+
+object juego{
+  var player = null
+    method iniciar_juego(){
+      game.addVisual(main_menu)
+
+      keyboard.enter().onPressDo({
+      game.removeVisual(main_menu)
+      game.addVisual(pistola)
+      game.addVisual(mosca)
+      player = main_menu.obtenerPersonajeActual()
+
+      //game.addVisualCharacter(player)
+      game.addVisualCharacter(player)
+      player.spawnearPersonaje()
+
+      game.onCollideDo(player, { elemento =>
+        elemento.colisionarCon(player)
+      })
+    })
+
+
+    keyboard.right().onPressDo({
+      if(game.hasVisual(main_menu)){
+        main_menu.avanzarPersonaje()
+      }
+    })
+    keyboard.left().onPressDo({
+      if(game.hasVisual(main_menu)){
+        main_menu.retrocederPersonaje()
+      }
+    })
+
+  }
 }
