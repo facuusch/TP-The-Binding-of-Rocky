@@ -1,5 +1,8 @@
 import wollok.game.*
 import menu.*
+import enemigos.*
+import items.*
+import src.theBindingOfRocky.juego
 
 class Personaje {
   var property position = game.at(7,0)
@@ -13,9 +16,9 @@ class Personaje {
   method vida() = vida
 
 
-  method spawnearPersonaje(){
+  method reiniciarStats(){
     position = game.at(7,0)
-    //spriteActual = spriteBasico
+    spriteActual = spriteBasico
     vida = 10
     danio = 3
     escudo = 4
@@ -30,8 +33,7 @@ class Personaje {
     //cambiar sprite a un sprite de golpe capaz?
     vida = vida - (danioEnemigo / escudo).truncate(0)
     if(vida <= 0 ){
-      game.removeVisual(self)
-      game.addVisual(game_over)
+      juego.terminarJuego()
     }
   }
 

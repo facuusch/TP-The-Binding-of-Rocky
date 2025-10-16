@@ -11,16 +11,40 @@ program theBindingOfRocky {
   game.height(15)
   game.cellSize(50)
 
-  juego.iniciar_juego()
-
+  //juego.iniciar_juego()
+  //var player = null
+  game.addVisual(mainMenu)
   
 
   
   keyboard.enter().onPressDo({
-    if(game.hasVisual(game_over)){
-      game_over.reiniciar()
+    if(game.hasVisual(mainMenu)){
+      game.removeVisual(mainMenu)
+      if(!juego.fueIniciado()){
+        juego.iniciarJuego()
+      } else{
+        juego.reiniciarJuego()
+      }
+      //juego.cambiarPersonaje()
+      //juego.reiniciarJuego()
+    }
+    if(game.hasVisual(gameOver)){
+      game.removeVisual(gameOver)
+      game.addVisual(mainMenu)
     }
   })
+
+  keyboard.right().onPressDo({
+      if(game.hasVisual(mainMenu)){
+        mainMenu.avanzarPersonaje()
+      }
+    })
+
+    keyboard.left().onPressDo({
+      if(game.hasVisual(mainMenu)){
+        mainMenu.retrocederPersonaje()
+      }
+    })
   //keyboard.h().onPressDo({game.say(player, "me queda " + player.vida() + " vida")})
  
 
@@ -30,35 +54,43 @@ program theBindingOfRocky {
 
 object juego{
   var player = null
-    method iniciar_juego(){
-      game.addVisual(main_menu)
+  var iniciado = false
 
-      keyboard.enter().onPressDo({
-      game.removeVisual(main_menu)
-      game.addVisual(pistola)
-      game.addVisual(mosca)
-      player = main_menu.obtenerPersonajeActual()
+  method fueIniciado() = iniciado//game.hasVisual(player)
+  method cambiarPersonaje(){
+    player = mainMenu.obtenerPersonajeActual()
+  }
 
-      //game.addVisualCharacter(player)
-      game.addVisualCharacter(player)
-      player.spawnearPersonaje()
+  method iniciarJuego(){
+    iniciado = true
+    game.say(player, "la pistola fue agregada")
+    game.addVisual(pistola)
+    game.addVisual(mosca)
 
-      game.onCollideDo(player, { elemento =>
+    player = mainMenu.obtenerPersonajeActual()
+    game.addVisualCharacter(player)
+    player.reiniciarStats()
+
+    game.onCollideDo(player, { elemento =>
         elemento.colisionarCon(player)
-      })
     })
+  }
 
+  method terminarJuego(){
+    //game.removeVisual(player)
+    game.removeVisual(mosca)
+    if(game.hasVisual(pistola)){
+      game.removeVisual(pistola)
+      game.say(player, "la pistola fue removida")
+    }
+    game.addVisual(gameOver)
+  }
 
-    keyboard.right().onPressDo({
-      if(game.hasVisual(main_menu)){
-        main_menu.avanzarPersonaje()
-      }
-    })
-    keyboard.left().onPressDo({
-      if(game.hasVisual(main_menu)){
-        main_menu.retrocederPersonaje()
-      }
-    })
-
+  method reiniciarJuego(){
+    player.reiniciarStats()
+    player = mainMenu.obtenerPersonajeActual()
+    game.addVisual(pistola)
+    game.addVisual(mosca)
+    
   }
 }
