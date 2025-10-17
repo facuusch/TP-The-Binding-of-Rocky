@@ -33,8 +33,22 @@ class Personaje {
     }
   }
 
-  method disparar(){
-
+  method disparar(sentido){
+    const bala = new Proyectil(position = self.position())
+    bala.spawnearProyectil(danio)
+    if(sentido == "arriba"){
+      game.onTick(100, "disparo", {bala.moverBalaArriba()})
+    }
+    if(sentido == "izquierda"){
+      game.onTick(100, "disparo", {bala.moverBalaIzquierda()})
+    }
+    if(sentido == "derecha"){
+      game.onTick(100, "disparo", {bala.moverBalaDerecha()})
+    }
+    if(sentido == "abajo"){
+      game.onTick(100, "disparo", {bala.moverBalaAbajo()})
+    }
+    
   }
 
   method cambiarSprite(nuevoSprite){
@@ -58,6 +72,27 @@ object manu inherits Personaje{}
 object facu inherits Personaje{}
 
 class Proyectil {
-  var property position =
+  var property position = game.origin()
+  method image() = "proyectil.png"
+  method spawnearProyectil(danioPlayer){
+    game.addVisual(self)
+    game.onCollideDo(self, {enemigo => 
+    enemigo.pegar(self.danio(danioPlayer))
+    })
+  }
+  method danio(danioJugador) = 1 + danioJugador
+
+  method moverBalaArriba(){
+    position = position.up(1)
+  }
+  method moverBalaIzquierda(){
+    position = position.left(1)
+  }
+  method moverBalaAbajo(){
+    position = position.down(1)
+  }
+  method moverBalaDerecha(){
+    position = position.right(1)
+  }
 
 }

@@ -47,7 +47,18 @@ program theBindingOfRocky {
     })
   //keyboard.h().onPressDo({game.say(player, "me queda " + player.vida() + " vida")})
  
-
+  keyboard.w().onPressDo({
+    juego.disparo("arriba")
+  })
+  keyboard.a().onPressDo({
+    juego.disparo("izquierda")
+  })
+  keyboard.s().onPressDo({
+    juego.disparo("abajo")
+  })
+  keyboard.d().onPressDo({
+    juego.disparo("derecha")
+  })
 
   game.start()
 }
@@ -73,6 +84,7 @@ object juego{
     game.onCollideDo(player, { elemento =>
         elemento.colisionarCon(player)
     })
+
   }
 
   method terminarJuego(){
@@ -91,5 +103,8 @@ object juego{
     game.addVisual(pistola)
     game.addVisual(mosca)
     
+  }
+  method disparo(sentido){
+    player.disparar(sentido)
   }
 }
