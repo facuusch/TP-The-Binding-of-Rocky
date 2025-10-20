@@ -4,13 +4,19 @@ import utils.*
 class Enemigo{
   var property danio = 5
   var property position = posicionAleatoria.calcular()
-  var property y = -1
-  var property x = -1
 
   method colisionarCon(personaje){
     personaje.asumirDanio(danio)
     // bajar vida al personaje
   }
+
+}
+
+object mosca inherits Enemigo {
+
+  var property y = -1
+
+  method image() = "mosca.png"
 
   method moverArriba(){
     position = position.up(1)
@@ -22,21 +28,6 @@ class Enemigo{
     y = -1
   }
 
-  method moverIzquierda(){
-    position = position.left(1)
-    x = -1
-  }
-
-  method moverDerecha(){
-    position = position.right(1)
-    x = 1
-  }
-}
-
-object mosca inherits Enemigo {
-
-  method image() = "mosca.png"
-  
   method rebotar (){
       if (self.y() == -1) {
         self.moverArriba()
@@ -49,16 +40,37 @@ object mosca inherits Enemigo {
 
 object cv inherits Enemigo {
 
-  method image() = "mosca.png"
+  method image() = "cv.png"
+
+  var property z = 1
+  method moverArriba(){
+    position = position.up(1)
+    z = 2
+  }
+
+  method moverAbajo(){
+    position = position.down(1)
+    z = 4
+  }
+
+  method moverIzquierda(){
+    position = position.left(1)
+    z = 1
+  }
+
+  method moverDerecha(){
+    position = position.right(1)
+    z = 3
+  }
 
   method circular(){
-    if (self.y() == -1) {
+    if (self.z() == 1) {
         self.moverArriba()
-    } else if (self.x() == -1){
+    } else if (self.z() == 2){
         self.moverDerecha()
-    } else if (self.y() == 1){
+    } else if (self.z() == 3){
         self.moverAbajo()
-    } else if (self.x() == 1){
+    } else if (self.z() == 4){
         self.moverIzquierda()
     }
   }
