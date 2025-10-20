@@ -76,12 +76,14 @@ object juego{
     iniciado = true
     game.addVisual(pistola)
     game.addVisual(mosca)
+    game.addVisual(cv)
 
     player = mainMenu.obtenerPersonajeActual()
     game.addVisualCharacter(player)
     //player.reiniciarStats()
 
     game.onTick(1000, "moverMosca", {mosca.rebotar()})
+    game.onTick(1500, "moverCv", {cv.circular()})
 
     game.onCollideDo(player, { elemento =>
         elemento.colisionarCon(player)
@@ -92,6 +94,8 @@ object juego{
   method terminarJuego(){
     //game.removeVisual(player)
     game.removeVisual(mosca)
+    game.removeVisual(cv)
+
     if(game.hasVisual(pistola)){
       game.removeVisual(pistola)
       game.say(player, "la pistola fue removida")
@@ -104,6 +108,7 @@ object juego{
     player = mainMenu.obtenerPersonajeActual()
     game.addVisual(pistola)
     game.addVisual(mosca)
+    game.addVisual(cv)
     
   }
   method disparo(sentido){
