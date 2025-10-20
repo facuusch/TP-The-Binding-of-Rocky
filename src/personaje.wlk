@@ -12,6 +12,7 @@ class Personaje {
   var property vida = 10
   var property danio = 3
   var property escudo = 4
+  var recargando = false
 
   method reiniciarStats(){
     position = game.at(7,0)
@@ -34,21 +35,31 @@ class Personaje {
   }
 
   method disparar(sentido){
-    const bala = new Proyectil(position = self.position())
-    bala.spawnearProyectil(danio)
-    if(sentido == "arriba"){
-      game.onTick(100, "disparo", {bala.moverBalaArriba()})
-    }
-    if(sentido == "izquierda"){
-      game.onTick(100, "disparo", {bala.moverBalaIzquierda()})
-    }
-    if(sentido == "derecha"){
-      game.onTick(100, "disparo", {bala.moverBalaDerecha()})
-    }
-    if(sentido == "abajo"){
-      game.onTick(100, "disparo", {bala.moverBalaAbajo()})
+    if(not recargando){
+      const bala = new Proyectil(position = self.position())
+      bala.spawnearProyectil(danio)
+      if(sentido == "arriba"){
+        game.onTick(100, "disparo", {bala.moverBalaArriba()})
+      }
+      if(sentido == "izquierda"){
+        game.onTick(100, "disparo", {bala.moverBalaIzquierda()})
+      }
+      if(sentido == "derecha"){
+        game.onTick(100, "disparo", {bala.moverBalaDerecha()})
+      }
+      if(sentido == "abajo"){
+        game.onTick(100, "disparo", {bala.moverBalaAbajo()})
+      }
+      recargando = true
+      self.recargar()
     }
     
+  }
+
+  method recargar(){
+    game.schedule(350, {
+      recargando = false
+    })
   }
 
   method cambiarSprite(nuevoSprite){
@@ -84,15 +95,27 @@ class Proyectil {
 
   method moverBalaArriba(){
     position = position.up(1)
+    if(position.y() >= game.height()){
+      game.removeVisual(self)
+    }
   }
   method moverBalaIzquierda(){
     position = position.left(1)
+    if(position.x() < 0){
+      game.removeVisual(self)
+    }
   }
   method moverBalaAbajo(){
     position = position.down(1)
+    if(position.y() < 0){
+      game.removeVisual(self)
+    }
   }
   method moverBalaDerecha(){
     position = position.right(1)
+    if(position.x() >= game.width()){
+      game.removeVisual(self)
+    }
   }
 
 }
