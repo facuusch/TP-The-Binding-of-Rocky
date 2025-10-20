@@ -81,6 +81,8 @@ object juego{
     game.addVisualCharacter(player)
     //player.reiniciarStats()
 
+    game.onTick(1000, "moverMosca", {mosca.rebotar()})
+
     game.onCollideDo(player, { elemento =>
         elemento.colisionarCon(player)
     })
