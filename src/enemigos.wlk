@@ -7,7 +7,6 @@ class Enemigo{
 
   method colisionarCon(personaje){
     personaje.asumirDanio(danio)
-    // bajar vida al personaje
   }
 
 }
