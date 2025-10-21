@@ -6,3 +6,4 @@ object posicionAleatoria {
     1.randomUpTo(game.height()+8).truncate(0)
   )
 }
+
