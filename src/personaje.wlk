@@ -19,7 +19,7 @@ class Personaje {
     spriteActual = spriteBasico
     vida = 10
     danio = 3
-    escudo = 4
+    escudo = 2
   }
 
   method agarrarItem(item){

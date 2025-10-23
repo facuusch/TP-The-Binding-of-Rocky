@@ -6,14 +6,18 @@ class Item {
   
   method colisionarCon (personaje){
     personaje.agarrarItem(self)
-    game.say(self, "bbb")
+    game.say(personaje, "Agarre el item: " + self)
   }
 }
 
-class ItemBasico {
+class ItemBasico inherits Item{
 
 }
 
-object pistola inherits Item{
+class ItemVida inherits Item{
+  var property vidaExtra = 3
+}
+
+object arma inherits ItemBasico{
   method image() = "pistola.png"
 }
