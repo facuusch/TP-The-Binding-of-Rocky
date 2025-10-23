@@ -14,6 +14,7 @@ class Personaje {
   var property danio = 3
   var property escudo = 4
   var recargando = false
+  var idBala = 0
 
   method reiniciarPosicion(){
     position = game.at(7,0)
@@ -44,18 +45,11 @@ class Personaje {
     if(not recargando){
       const bala = new Proyectil(position = self.position())
       bala.spawnearProyectil(danio)
-      if(sentido == "arriba"){
-        game.onTick(100, "disparo", {bala.moverBalaArriba()})
-      }
-      if(sentido == "izquierda"){
-        game.onTick(100, "disparo", {bala.moverBalaIzquierda()})
-      }
-      if(sentido == "derecha"){
-        game.onTick(100, "disparo", {bala.moverBalaDerecha()})
-      }
-      if(sentido == "abajo"){
-        game.onTick(100, "disparo" + id.toString(), {bala.moverBalaAbajo()})
-      }
+      game.onTick(100, "Disparo" + idBala.toString(), {
+        bala.mover(sentido, idBala)
+        game.say(cv, "Disparo" + idBala)
+      })
+      idBala += 1
       recargando = true
       self.recargar()
     }
@@ -76,6 +70,15 @@ class Personaje {
 
 object arriba{
   method nuevaPosicion(posicionActual) = posicionActual.up(1)
+}
+object abajo{
+  method nuevaPosicion(posicionActual) = posicionActual.down(1)
+}
+object izquierda{
+  method nuevaPosicion(posicionActual) = posicionActual.left(1)
+}
+object derecha{
+  method nuevaPosicion(posicionActual) = posicionActual.right(1)
 }
 
 object blito inherits Personaje{
@@ -103,33 +106,18 @@ class Proyectil {
   }
   method danio(danioJugador) = 1 + danioJugador
 
-  method moverBalaArriba(){
-    position = position.up(1)
-    if(position.y() >= game.height()){
-      game.removeTickEvent("disparo")
-      game.removeVisual(self)
-    }
-  }
-  method moverBalaIzquierda(){
-    position = position.left(1)
-    if(position.x() < 0){
-      game.removeTickEvent("disparo")
-      game.removeVisual(self)
-    }
-  }
-  method moverBalaAbajo(){
-    position = position.down(1)
-    if(position.y() < 0){
-      game.removeTickEvent("disparo")
-      game.removeVisual(self)
-    }
-  }
-  method moverBalaDerecha(){
-    position = position.right(1)
-    if(position.x() >= game.width()){
-      game.removeTickEvent("disparo")
+  method mover(sentido, id){
+    position = sentido.nuevaPosicion(position)
+    if(self.outOfBounds()){
+      game.say(mosca, "Disparo" + id)
+      game.removeTickEvent("Disparo" + id)
       game.removeVisual(self)
     }
   }
 
+  method outOfBounds() = (
+    (position.y() >= game.height())
+     or (position.x() < 0)
+      or (position.y() < 0)
+       or (position.x() >= game.width()))
 }
