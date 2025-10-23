@@ -49,13 +49,12 @@ class Personaje {
       }
       if(sentido == "izquierda"){
         game.onTick(100, "disparo", {bala.moverBalaIzquierda()})
-        //game.removeTickEvent("disparo")
       }
       if(sentido == "derecha"){
         game.onTick(100, "disparo", {bala.moverBalaDerecha()})
       }
       if(sentido == "abajo"){
-        game.onTick(100, "disparo", {bala.moverBalaAbajo()})
+        game.onTick(100, "disparo" + id.toString(), {bala.moverBalaAbajo()})
       }
       recargando = true
       self.recargar()
@@ -73,6 +72,10 @@ class Personaje {
     spriteActual = nuevoSprite
   }
   method image() = spriteActual
+}
+
+object arriba{
+  method nuevaPosicion(posicionActual) = posicionActual.up(1)
 }
 
 object blito inherits Personaje{
@@ -103,24 +106,28 @@ class Proyectil {
   method moverBalaArriba(){
     position = position.up(1)
     if(position.y() >= game.height()){
+      game.removeTickEvent("disparo")
       game.removeVisual(self)
     }
   }
   method moverBalaIzquierda(){
     position = position.left(1)
     if(position.x() < 0){
+      game.removeTickEvent("disparo")
       game.removeVisual(self)
     }
   }
   method moverBalaAbajo(){
     position = position.down(1)
     if(position.y() < 0){
+      game.removeTickEvent("disparo")
       game.removeVisual(self)
     }
   }
   method moverBalaDerecha(){
     position = position.right(1)
     if(position.x() >= game.width()){
+      game.removeTickEvent("disparo")
       game.removeVisual(self)
     }
   }
