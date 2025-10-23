@@ -1,12 +1,22 @@
 import wollok.game.*
 import utils.*
+import salas.*
 
 class Enemigo{
+  var property vida = 6
   var property danio = 5
   var property position = posicionAleatoria.calcular()
 
   method colisionarCon(personaje){
     personaje.asumirDanio(danio)
+  }
+
+  method pegar(danioPlayer){
+    vida -= danioPlayer
+    if(vida <= 0){
+      game.removeVisual(self)
+      sala_1.chequearVacia()
+    }
   }
 
 }

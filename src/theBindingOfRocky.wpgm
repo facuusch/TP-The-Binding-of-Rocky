@@ -1,3 +1,4 @@
+import src.salas.*
 import wollok.game.*
 import personaje.*
 import items.*
@@ -75,14 +76,12 @@ object juego{
   method iniciarJuego(){
     iniciado = true
     game.addVisual(arma)
-    game.addVisual(mosca)
-    game.addVisual(cv)
-
+    //game.addVisual(sala_1)
+    sala_1.cargarSala()
+    
     player = mainMenu.obtenerPersonajeActual()
     game.addVisualCharacter(player)
-
-    game.onTick(800, "moverMosca", {mosca.rebotar()})
-    game.onTick(1500, "moverCv", {cv.circular()})
+    
 
     game.onCollideDo(player, { elemento =>
         elemento.colisionarCon(player)

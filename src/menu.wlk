@@ -36,3 +36,8 @@ object gameOver{
     var property position = game.origin()
     method image() = "game_over.png"
 }
+
+object pantallaWin{
+    var property position = game.origin()
+    method image() = "pantalla_win.png"
+}
