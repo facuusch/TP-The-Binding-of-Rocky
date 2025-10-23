@@ -67,10 +67,25 @@ program theBindingOfRocky {
 object juego{
   var player = null
   var iniciado = false
+  const salas = [sala_1, sala_2, sala_3]
+  var property salaActual = 0
 
   method fueIniciado() = iniciado//game.hasVisual(player)
   method cambiarPersonaje(){
     player = mainMenu.obtenerPersonajeActual()
+  }
+
+  method pasarNivel(){
+    game.removeVisual(salas.get(salaActual))
+    salaActual += 1
+    if(salaActual == 2){
+      game.addVisual(pantallaWin)
+    }
+    game.addVisual(salas.get(salaActual))
+  }
+
+  method chequearTerminada(){
+    (salas.get(salaActual)).chequearVacia()
   }
 
   method iniciarJuego(){

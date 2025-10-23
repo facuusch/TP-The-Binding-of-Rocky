@@ -1,11 +1,14 @@
 import wollok.game.*
 import utils.*
 import salas.*
+import src.theBindingOfRocky.juego
 
 class Enemigo{
   var property vida = 6
   var property danio = 5
   var property position = posicionAleatoria.calcular()
+  //const salas = [sala_1, sala_2, sala_3]
+  //var property salaActual = 0
 
   method colisionarCon(personaje){
     personaje.asumirDanio(danio)
@@ -15,7 +18,7 @@ class Enemigo{
     vida -= danioPlayer
     if(vida <= 0){
       game.removeVisual(self)
-      sala_1.chequearVacia()
+      juego.chequearTerminada()
     }
   }
 
@@ -23,39 +26,43 @@ class Enemigo{
 
 object mosca inherits Enemigo {
 
-  //var property y = -1
+  var property y = -1
 
   method image() = "mosca.png"
 
   method moverArriba(){
     position = position.up(1)
-    //y = 1
+    y = 1
   }
 
   method moverAbajo(){
     position = position.down(1)
-    //y = -1
+    y = -1
   }
 
-  // method rebotar (){
-  //     if (self.y() == -1) {
-  //       self.moverArriba()
-  //     } else {
-  //       self.moverAbajo()
-  //     }
+   method rebotar (){
+       if (self.y() == -1) {
+         self.moverArriba()
+       } else {
+         self.moverAbajo()
+       }
+   }
+
+  // method rebotar(){
+  //   game.schedule(200, {self.moverArriba()})
+  //   game.schedule(400, {self.moverAbajo()})
+
   // }
-
-  method rebotar(){
-    game.schedule(200, {self.moverArriba()})
-    game.schedule(400, {self.moverAbajo()})
-
-  }
 }
 
 object cv inherits Enemigo {
 
   method image() = "cv.png"
+ // method rebotar(){
+  //   game.schedule(200, {self.moverArriba()})
+  //   game.schedule(400, {self.moverAbajo()})
 
+  // }
   var property z = 1
   method moverArriba(){
     position = position.up(1)

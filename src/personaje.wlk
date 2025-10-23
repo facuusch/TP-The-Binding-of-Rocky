@@ -13,21 +13,10 @@ class Personaje {
   var property vida = 10
   var property danio = 3
   var property escudo = 4
-  const salas = [sala_1, sala_2, sala_3]
-  var nivel = 0
   var recargando = false
 
   method reiniciarPosicion(){
     position = game.at(7,0)
-  }
-
-  method pasarNivel(){
-    game.removeVisual(salas.get(nivel))
-    nivel += 1
-    game.addVisual(salas.get(nivel))
-    if(nivel == 2){
-      game.addVisual(pantallaWin)
-    }
   }
 
   method reiniciarStats(){
@@ -60,6 +49,7 @@ class Personaje {
       }
       if(sentido == "izquierda"){
         game.onTick(100, "disparo", {bala.moverBalaIzquierda()})
+        //game.removeTickEvent("disparo")
       }
       if(sentido == "derecha"){
         game.onTick(100, "disparo", {bala.moverBalaDerecha()})
