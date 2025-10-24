@@ -12,11 +12,8 @@ program theBindingOfRocky {
   game.height(15)
   game.cellSize(50)
 
-  //juego.iniciar_juego()
-  //var player = null
   game.addVisual(mainMenu)
   
-
   
   keyboard.enter().onPressDo({
     if(game.hasVisual(mainMenu)){
@@ -56,6 +53,7 @@ object juego{
   var iniciado = false
   const salas = [sala_1, sala_2, sala_3]
   var property salaActual = 0
+  const personajesIniciados = []
 
   method fueIniciado() = iniciado//game.hasVisual(player)
   method cambiarPersonaje(){
@@ -63,26 +61,35 @@ object juego{
   }
 
   method pasarNivel(){
+    salas.get(salaActual).borrarSala()
     game.removeVisual(salas.get(salaActual))
     salaActual += 1
     if(salaActual == 2){
       game.addVisual(pantallaWin)
+    } else{
+      game.addVisual(salas.get(salaActual))
+      salas.get(salaActual).cargarSala()
     }
-    game.addVisual(salas.get(salaActual))
+    
   }
 
   method chequearTerminada(){
     (salas.get(salaActual)).chequearVacia()
+    //aca iria tambien un chequeo si piso botones o activo una palanca o algo por el estilo
   }
 
   method iniciarJuego(){
     iniciado = true
-    game.addVisual(arma)
     game.addVisual(sala_1)
     sala_1.cargarSala()
     
     player = mainMenu.obtenerPersonajeActual()
-    game.addVisualCharacter(player)
+    if(not personajesIniciados.contains(player)){
+      self.inicializarPersonaje(player)
+      personajesIniciados.add(player)
+    }
+    game.addVisual(player)
+    //game.addVisualCharacter(player)
 
     keyboard.w().onPressDo({
       player.disparar(arriba)
@@ -98,29 +105,38 @@ object juego{
     })
     
 
-    game.onCollideDo(player, { elemento =>
-        elemento.colisionarCon(player)
-    })
+    // game.onCollideDo(player, { elemento =>
+    //     elemento.colisionarCon(player)
+    // })
 
   }
 
-  method terminarJuego(){
-    //game.removeVisual(player)
-    game.removeVisual(mosca)
-    game.removeVisual(cv)
+  method inicializarPersonaje(personaje){
+    game.addVisualCharacter(personaje)
 
-    if(game.hasVisual(arma)){
-      game.removeVisual(arma)
-    }
+    game.onCollideDo(personaje, { elemento =>
+        elemento.colisionarCon(personaje)
+    })
+
+    game.removeVisual(personaje)
+    //este metodo lo usamos porque despues no se refrescan los sprites si no lo hacemos
+  }
+
+  method terminarJuego(){
+    player.reiniciarStats()
+    game.removeVisual(player)
+
     game.addVisual(gameOver)
   }
 
   method reiniciarJuego(){
-    player.reiniciarStats()
     player = mainMenu.obtenerPersonajeActual()
-    game.addVisual(arma)
-    game.addVisual(mosca)
-    game.addVisual(cv)
-    
+    player.reiniciarStats()
+    if(not personajesIniciados.contains(player)){
+      self.inicializarPersonaje(player)
+      personajesIniciados.add(player)
+    }
+    game.addVisual(player)
+    sala_1.cargarSala()
   }
 }

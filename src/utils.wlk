@@ -7,3 +7,10 @@ object posicionAleatoria {
   )
 }
 
+object outOfBounds {
+  method verificar(position) = (
+    (position.y() >= game.height())
+     or (position.x() < 0)
+      or (position.y() < 0)
+       or (position.x() >= game.width()))
+}

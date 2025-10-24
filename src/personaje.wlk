@@ -1,3 +1,4 @@
+import src.utils.*
 import wollok.game.*
 import menu.*
 import enemigos.*
@@ -44,10 +45,9 @@ class Personaje {
   method disparar(sentido){
     if(not recargando){
       const bala = new Proyectil(position = self.position())
-      bala.spawnearProyectil(danio)
+      bala.spawnearProyectil(danio, idBala)
       game.onTick(100, "Disparo" + idBala.toString(), {
-        bala.mover(sentido, idBala)
-        game.say(cv, "Disparo" + idBala)
+        bala.mover(sentido)
       })
       idBala += 1
       recargando = true
@@ -99,8 +99,10 @@ object facu inherits Personaje{}
 
 class Proyectil {
   var property position = game.origin()
+  var property id = 0
   method image() = "proyectil.png"
-  method spawnearProyectil(danioPlayer){
+  method spawnearProyectil(danioPlayer, idBala){
+    id = idBala
     game.addVisual(self)
     game.onCollideDo(self, {enemigo => 
     enemigo.pegar(self.danio(danioPlayer))
@@ -108,18 +110,11 @@ class Proyectil {
   }
   method danio(danioJugador) = 1 + danioJugador
 
-  method mover(sentido, id){
+  method mover(sentido){
     position = sentido.nuevaPosicion(position)
-    if(self.outOfBounds()){
-      game.say(mosca, "Disparo" + id)
+    if(outOfBounds.verificar(position)){
       game.removeTickEvent("Disparo" + id)
       game.removeVisual(self)
     }
   }
-
-  method outOfBounds() = (
-    (position.y() >= game.height())
-     or (position.x() < 0)
-      or (position.y() < 0)
-       or (position.x() >= game.width()))
 }

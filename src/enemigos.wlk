@@ -2,13 +2,13 @@ import wollok.game.*
 import utils.*
 import salas.*
 import src.theBindingOfRocky.juego
+import personaje.*
 
 class Enemigo{
   var property vida = 6
   var property danio = 5
   var property position = posicionAleatoria.calcular()
-  //const salas = [sala_1, sala_2, sala_3]
-  //var property salaActual = 0
+  var property id = 0
 
   method colisionarCon(personaje){
     personaje.asumirDanio(danio)
@@ -18,14 +18,24 @@ class Enemigo{
     vida -= danioPlayer
     if(vida <= 0){
       game.removeVisual(self)
+      game.removeTickEvent("moverEnemigo" + id)
       juego.chequearTerminada()
     }
   }
 
+  method movimiento(){}
+
+  method agregarEnemigo(enemigos){
+    game.addVisual(self)
+    enemigos.add(self)
+    game.onTick(800, "moverEnemigo" + id.toString(), {self.movimiento()})
+   }
+
 }
 
-object mosca inherits Enemigo {
-
+class Mosca inherits Enemigo {
+  var property posicionInicial = position
+  var property posicionAnterior = position
   var property y = -1
 
   method image() = "mosca.png"
@@ -39,8 +49,16 @@ object mosca inherits Enemigo {
     position = position.down(1)
     y = -1
   }
+  method mover(sentido){
+    posicionAnterior = position
+    position = sentido.nuevaPosicion(position)
 
-   method rebotar (){
+    if(outOfBounds.verificar(position)){
+      position = posicionAnterior
+    }
+  }
+
+   method rebotarVieja (){
        if (self.y() == -1) {
          self.moverArriba()
        } else {
@@ -48,21 +66,20 @@ object mosca inherits Enemigo {
        }
    }
 
-  // method rebotar(){
-  //   game.schedule(200, {self.moverArriba()})
-  //   game.schedule(400, {self.moverAbajo()})
+   override method movimiento(){
+     if(position.y() == (posicionInicial.y() - 1)){
+      self.mover(arriba)
+     } else{
+      self.mover(abajo)
+     }
+   }
 
-  // }
+   
 }
 
-object cv inherits Enemigo {
+class Cv inherits Enemigo {
 
   method image() = "cv.png"
- // method rebotar(){
-  //   game.schedule(200, {self.moverArriba()})
-  //   game.schedule(400, {self.moverAbajo()})
-
-  // }
   var property z = 1
   method moverArriba(){
     position = position.up(1)
@@ -84,7 +101,7 @@ object cv inherits Enemigo {
     z = 3
   }
 
-  method circular(){
+  override method movimiento(){
     if (self.z() == 1) {
         self.moverArriba()
     } else if (self.z() == 2){
@@ -95,4 +112,6 @@ object cv inherits Enemigo {
         self.moverIzquierda()
     }
   }
+
+  
 }
