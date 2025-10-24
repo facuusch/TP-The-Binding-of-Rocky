@@ -24,6 +24,7 @@ object puerta{
         game.removeVisual(personaje)
         juego.pasarNivel()
         game.addVisual(personaje)
+        game.removeVisual(self)
     }
 }
 
@@ -70,12 +71,12 @@ object sala_1 inherits Sala(){
 
 }
 object sala_2 inherits Sala(){
+    var property position = game.origin()
     method image() = "sala_2.png"
 
     method cargarSala(){
         const mosca1 = new Mosca()
-        game.addVisual(mosca1)
-        enemigos.add(mosca1)
+        mosca1.agregarEnemigo(enemigos)
     }
 
     method borrarSala(){
@@ -83,11 +84,14 @@ object sala_2 inherits Sala(){
     }
 }
 object sala_3 inherits Sala(){
+    var property position = game.origin()
     method image() = "sala_3.png"
 
     method cargarSala(){
         const mosca1 = new Mosca()
-        game.addVisual(mosca1)
-        enemigos.add(mosca1)
+        mosca1.agregarEnemigo(enemigos)
+    }
+    method borrarSala(){
+        
     }
 }

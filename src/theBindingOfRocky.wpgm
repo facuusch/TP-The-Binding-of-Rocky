@@ -64,7 +64,7 @@ object juego{
     salas.get(salaActual).borrarSala()
     game.removeVisual(salas.get(salaActual))
     salaActual += 1
-    if(salaActual == 2){
+    if(salaActual == 3){
       game.addVisual(pantallaWin)
     } else{
       game.addVisual(salas.get(salaActual))

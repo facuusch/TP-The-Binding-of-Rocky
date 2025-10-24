@@ -28,7 +28,6 @@ class Personaje {
     danio = 3
     escudo = 2
   }
-  
 
   method agarrarItem(item){
     game.removeVisual(item)
@@ -61,6 +60,8 @@ class Personaje {
       recargando = false
     })
   }
+
+  method pegar(){}
 
   method cambiarSprite(nuevoSprite){
     spriteActual = nuevoSprite
@@ -117,4 +118,5 @@ class Proyectil {
       game.removeVisual(self)
     }
   }
+  method colisionarCon(){}
 }
