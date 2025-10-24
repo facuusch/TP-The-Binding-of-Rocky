@@ -34,8 +34,8 @@ class Personaje {
     self.cambiarSprite(spriteAlternativo)
   }
 
-  method asumirDanio(danioEnemigo){
-    vida = vida - (danioEnemigo / escudo).truncate(0)
+  method asumirDanio(danioAsumido){
+    vida = vida - ((danio * (1 - (escudo / (escudo + 10))))).truncate(0)
     if(vida <= 0 ){
       juego.terminarJuego()
     }
@@ -89,7 +89,9 @@ object gabi inherits Personaje{
   override method image() = "" + self + super()
 }
 
-object tuca inherits Personaje{}
+object tuca inherits Personaje{
+
+}
 
 object manu inherits Personaje{}
 

@@ -21,11 +21,12 @@ object puerta{
     // }
 }
 
-object pincho{
+class Pincho{
     var property position = posicionAleatoria.calcular()
+    method image() = "pincho.png"
 
     method colisionarCon(personaje){
-        personaje.asumirDanio(3)
+        personaje.asumirDanio(2)
     }
 }
 
@@ -40,12 +41,17 @@ object sala_1 inherits Sala(){
         game.addVisual(cv)
         game.onTick(800, "moverMosca", {mosca.rebotar()})
         game.onTick(1500, "moverCv", {cv.circular()})
+        game.addVisual(new Pincho(position = game.at(1,1)))
+        game.addVisual(new Pincho(position = game.at(1,13)))
+        game.addVisual(new Pincho(position = game.at(13,13)))
+        game.addVisual(new Pincho(position = game.at(13,1)))
     }
 
     method chequearVacia(){
         vacia = enemigos.all({ enemigo => not game.hasVisual(enemigo) })
         if(vacia){
             game.addVisual(puerta)
+            //removeVisual de items y pinchos
         }
     }
 }

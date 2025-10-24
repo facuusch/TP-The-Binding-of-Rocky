@@ -78,7 +78,7 @@ object juego{
   method iniciarJuego(){
     iniciado = true
     game.addVisual(arma)
-    //game.addVisual(sala_1)
+    game.addVisual(sala_1)
     sala_1.cargarSala()
     
     player = mainMenu.obtenerPersonajeActual()
