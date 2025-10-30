@@ -102,13 +102,22 @@ class Proyectil {
   var property position = game.origin()
   var property id = 0
   method image() = "proyectil.png"
+
   method spawnearProyectil(danioPlayer, idBala){
     id = idBala
     game.addVisual(self)
+
     game.onCollideDo(self, {enemigo => 
-    enemigo.pegar(self.danio(danioPlayer))
+      enemigo.pegar(self.danio(danioPlayer))
+      self.destruir()
     })
   }
+
+  method destruir(){
+        game.removeTickEvent("Disparo" + self.id().toString())
+        game.removeVisual(self)
+  }
+
   method danio(danioJugador) = 1 + danioJugador
 
   method mover(sentido){
@@ -118,5 +127,6 @@ class Proyectil {
       game.removeVisual(self)
     }
   }
-  method colisionarCon(){}
+
+   method colisionarCon(){}
 }
