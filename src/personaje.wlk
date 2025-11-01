@@ -56,9 +56,7 @@ class Personaje {
   }
 
   method recargar(){
-    game.schedule(350, {
-      recargando = false
-    })
+    game.schedule(350, {recargando = false})
   }
 
   method pegar(){}
