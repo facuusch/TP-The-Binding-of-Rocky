@@ -16,6 +16,7 @@ class Personaje {
   var property escudo = 4
   var recargando = false
   var idBala = 0
+  var posicionAnterior = position
 
   method reiniciarPosicion(){
     position = game.at(7,0)
@@ -27,6 +28,14 @@ class Personaje {
     vida = 10
     danio = 3
     escudo = 2
+  }
+
+  method mover(sentido){
+    posicionAnterior = position
+    position = sentido.nuevaPosicion(position)
+  }
+  method regresar(){
+    position = posicionAnterior
   }
 
   method agarrarItem(item){

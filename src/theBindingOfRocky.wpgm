@@ -112,14 +112,24 @@ object juego{
   }
 
   method inicializarPersonaje(personaje){
-    game.addVisualCharacter(personaje)
+    //game.addVisualCharacter(personaje)
+
+    //
+    keyboard.up().onPressDo({ 
+      if(personaje.position().y() < game.height()-1) personaje.position(personaje.mover(arriba)) })
+    keyboard.down().onPressDo({ 
+      if(personaje.position().y() > 0) personaje.position(personaje.mover(abajo)) })
+    keyboard.right().onPressDo({ 
+      if (personaje.position().x() < game.width()-1) personaje.position(personaje.mover(derecha)) })
+    keyboard.left().onPressDo({ 
+      if (personaje.position().x() > 0) personaje.position(personaje.mover(izquierda)) })
+    //
 
     game.onCollideDo(personaje, { elemento =>
         elemento.colisionarCon(personaje)
     })
 
-    game.removeVisual(personaje)
-    //este metodo lo usamos porque despues no se refrescan los sprites si no lo hacemos
+    //game.removeVisual(personaje)
   }
 
   method terminarJuego(){

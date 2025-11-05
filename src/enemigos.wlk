@@ -7,7 +7,7 @@ import personaje.*
 class Enemigo{
   var property vida = 6
   var property danio = 5
-  var property position = posicionAleatoria.calcular()
+  var property position // = posicionAleatoria.calcular()
   var property id = 0
 
   method colisionarCon(personaje){
@@ -28,7 +28,7 @@ class Enemigo{
   method movimiento(){}
 
   method agregarEnemigo(enemigos){
-    game.addVisual(self)
+    //game.addVisual(self)
     enemigos.add(self)
     game.onTick(800, "moverEnemigo" + id.toString(), {self.movimiento()})
    }
