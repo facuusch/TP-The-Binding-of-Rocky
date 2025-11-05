@@ -59,7 +59,7 @@ class Personaje {
     game.schedule(350, {recargando = false})
   }
 
-  method pegar(){}
+  method pegar(arg0, arg1){}
 
   method cambiarSprite(nuevoSprite){
     spriteActual = nuevoSprite
@@ -106,8 +106,7 @@ class Proyectil {
     game.addVisual(self)
 
     game.onCollideDo(self, {enemigo => 
-      enemigo.pegar(self.danio(danioPlayer))
-      self.destruir()
+      enemigo.pegar(self.danio(danioPlayer), self)
     })
   }
 
@@ -126,5 +125,5 @@ class Proyectil {
     }
   }
 
-   method colisionarCon(){}
+   method colisionarCon(arg0){}
 }

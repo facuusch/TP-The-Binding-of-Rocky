@@ -33,6 +33,9 @@ class Sala{
 class Pared{
 	var property position
     method image() = "pared.png"
+    method pegar(danioPlayer, bala){
+        bala.destruir()
+    }
 }
 
 object puerta{
@@ -55,6 +58,7 @@ class Pincho{
     method colisionarCon(personaje){
         personaje.asumirDanio(2)
     }
+    method pegar(arg0, arg1){}
 }
 
 object sala_1 inherits Sala(){
@@ -186,6 +190,12 @@ object sala_2 inherits Sala(){
         
         game.addVisual(pincho4)
 	}
+    method borrarSala(){
+        game.removeVisual(pincho1)
+        game.removeVisual(pincho2)
+        game.removeVisual(pincho3)
+        game.removeVisual(pincho4)
+    }
 }
 object sala_3 inherits Sala(){
     var property position = game.origin()

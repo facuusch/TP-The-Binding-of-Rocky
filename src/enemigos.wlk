@@ -14,13 +14,15 @@ class Enemigo{
     personaje.asumirDanio(danio)
   }
 
-  method pegar(danioPlayer){
+  method pegar(danioPlayer, bala){
     vida -= danioPlayer
     if(vida <= 0){
       game.removeVisual(self)
       game.removeTickEvent("moverEnemigo" + id)
       juego.chequearTerminada()
     }
+
+    bala.destruir()
   }
 
   method movimiento(){}
