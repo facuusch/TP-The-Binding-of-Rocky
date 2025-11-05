@@ -52,7 +52,7 @@ class Personaje {
 
   method disparar(sentido){
     if(not recargando){
-      const bala = new Proyectil(position = self.position())
+      const bala = new Proyectil(position = self.position(), sprite = "proyectil_" + sentido.toString() + ".png")
       bala.spawnearProyectil(danio, idBala)
       game.onTick(100, "Disparo" + idBala.toString(), {
         bala.mover(sentido)
@@ -108,7 +108,8 @@ object facu inherits Personaje{}
 class Proyectil {
   var property position = game.origin()
   var property id = 0
-  method image() = "proyectil.png"
+  const sprite = "proyectil_izquierda.png"
+  method image() = sprite
 
   method spawnearProyectil(danioPlayer, idBala){
     id = idBala
