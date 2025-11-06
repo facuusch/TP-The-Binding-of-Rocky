@@ -18,6 +18,8 @@ class Personaje {
   var idBala = 0
   var posicionAnterior = position
 
+  method spriteBala() = "proyectil"
+
   method reiniciarPosicion(){
     position = game.at(7,0)
   }
@@ -59,11 +61,18 @@ class Personaje {
 
   method disparar(sentido){
     if(not recargando){
-      const bala = new Proyectil(position = self.position(), sprite = "proyectil_" + sentido.toString() + ".png")
-      bala.spawnearProyectil(danio, idBala)
+      const nombreBase = self.spriteBala()
+
+      const spriteCompleto = nombreBase + "_" + sentido.toString() + ".png"
+
+      const proyectil = new Proyectil(position = self.position())
+
+      proyectil.spawnearProyectil(danio, idBala, spriteCompleto)
+
       game.onTick(100, "Disparo" + idBala.toString(), {
-        bala.mover(sentido)
+        proyectil.mover(sentido)
       })
+
       idBala += 1
       recargando = true
       self.recargar()
@@ -99,32 +108,33 @@ object derecha{
 object blito inherits Personaje(vida = 7){
   override method image() = "" + self + super()
 
+  override method spriteBala() = "cuchillo"
 }
 
-object gabi inherits Personaje{
+object gabi inherits Personaje(vida = 4){
   override method image() = "" + self + super()
 
-  method seteoVida(){
-    vida = 4
-  }
-}
-
-object tuca inherits Personaje{
+  override method spriteBala() = "bala"
 
 }
 
-object manu inherits Personaje{}
+object tuca inherits Personaje(vida= 6){
 
-object facu inherits Personaje{}
+}
+
+object manu inherits Personaje(vida = 8){}
+
+object facu inherits Personaje(vida = 5){}
 
 class Proyectil {
   var property position = game.origin()
   var property id = 0
-  const sprite = "proyectil_izquierda.png"
+  var property  sprite = "bala.png"
   method image() = sprite
 
-  method spawnearProyectil(danioPlayer, idBala){
+  method spawnearProyectil(danioPlayer, idBala, spriteCompleto){
     id = idBala
+    self.sprite(spriteCompleto)
     game.addVisual(self)
 
     game.onCollideDo(self, {enemigo => 
