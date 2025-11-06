@@ -72,7 +72,7 @@ class Pared{
 }
 
 object puerta{
-    var property position = game.at(7,14)
+    var property position = game.at(7,13)
     method image() = "trampilla.png"
 
     method colisionarCon(personaje){
@@ -116,7 +116,7 @@ object sala_1 inherits Sala(){
         self.dibujarLineaDeElementos(1,     [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])
         self.dibujarLineaDeElementos(0,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 
-        
+
         // const mosca2 = new Mosca(id = 3)
         // mosca2.agregarEnemigo(enemigos)
 	}

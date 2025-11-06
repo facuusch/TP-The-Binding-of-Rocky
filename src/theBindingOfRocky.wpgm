@@ -90,6 +90,7 @@ object juego{
     }
     game.addVisual(player)
 
+    player.seteoVida()
     game.addVisual(spriteVida)
     spriteVida.actualizarVida(player.vida())
     //game.addVisualCharacter(player)
