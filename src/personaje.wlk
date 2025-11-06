@@ -34,7 +34,9 @@ class Personaje {
 
   method mover(sentido){
     posicionAnterior = position
-    position = sentido.nuevaPosicion(position)
+    const nuevaPosicion = sentido.nuevaPosicion(position)
+    //game.getObjectsIn(nuevaPosicion)
+    position = nuevaPosicion
   }
   method regresar(){
     position = posicionAnterior
