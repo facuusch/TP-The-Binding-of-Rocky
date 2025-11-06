@@ -1,4 +1,5 @@
 import src.personaje.*
+import src.enemigos.*
 import src.salas.*
 import wollok.game.*
 
@@ -7,4 +8,11 @@ test "Blito recibe daño fijo del pincho"{
     const pincho = new Pincho(position = game.at(1,2)) 
     pincho.colisionarCon(blito) 
     assert.equals(5, blito.vida())
+}
+
+test "La bala destruye al enemigo"{
+  const mosca = new Mosca(position = game.at(2,3))
+  const bala = new Proyectil()
+  mosca.pegar(3, bala)
+  assert.equals(3, mosca.vida())
 }
