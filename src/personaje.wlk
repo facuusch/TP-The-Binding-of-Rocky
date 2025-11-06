@@ -38,9 +38,13 @@ class Personaje {
     position = posicionAnterior
   }
 
-  method agarrarItem(item){
+  method agarrarItemBasico(item){
     game.removeVisual(item)
     self.cambiarSprite(spriteAlternativo)
+  }
+  method agarrarItemStats(item){
+    game.removeVisual(item)
+    item.cambiarStats(self)
   }
 
   method asumirDanio(danioAsumido){
@@ -92,12 +96,9 @@ object derecha{
   method nuevaPosicion(posicionActual) = posicionActual.right(1)
 }
 
-object blito inherits Personaje{
+object blito inherits Personaje(vida = 7){
   override method image() = "" + self + super()
 
-  method seteoVida(){
-    vida = 7
-  }
 }
 
 object gabi inherits Personaje{
@@ -155,4 +156,7 @@ object spriteVida{
   method actualizarVida(nuevaVida) {
     self.vidaActual(nuevaVida)
   }
+
+  method pegar(arg0, arg1){}
+  method colisionarCon(arg0){}
 }

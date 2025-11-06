@@ -56,7 +56,8 @@ class Sala{
         obstaculos.forEach({ obstaculo => game.removeVisual(obstaculo) })
         obstaculos.clear()
     }
-
+    method pegar(arg0, arg1){}
+    method colisionarCon(arg0){}
 }
 
 class Pared{
@@ -116,9 +117,6 @@ object sala_1 inherits Sala(){
         self.dibujarLineaDeElementos(1,     [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])
         self.dibujarLineaDeElementos(0,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 
-
-        // const mosca2 = new Mosca(id = 3)
-        // mosca2.agregarEnemigo(enemigos)
 	}
 
     method borrarSala(){
@@ -146,14 +144,6 @@ object sala_2 inherits Sala(){
         self.dibujarLineaDeElementos(2,     [0,0,0,1,0,0,0,1,0,0,0,1,0,0,0])
         self.dibujarLineaDeElementos(1,     [0,0,0,0,0,3,0,0,2,2,2,0,0,0,0])
         self.dibujarLineaDeElementos(0,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-
-
-        // const mosca1 = new Mosca(id = 4)
-        // mosca1.agregarEnemigo(enemigos)
-        // const cv1 = new Cv(id = 5)
-        // cv1.agregarEnemigo(enemigos)
-        // const mosca2 = new Mosca(id = 6)
-        // mosca2.agregarEnemigo(enemigos)
         
 	}
     method borrarSala(){

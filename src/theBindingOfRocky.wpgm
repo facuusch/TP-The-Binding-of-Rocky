@@ -61,6 +61,7 @@ object juego{
   }
 
   method pasarNivel(){
+    game.removeVisual(spriteVida)
     salas.get(salaActual).borrarSala()
     game.removeVisual(salas.get(salaActual))
     salaActual += 1
@@ -69,6 +70,7 @@ object juego{
     } else{
       game.addVisual(salas.get(salaActual))
       salas.get(salaActual).cargarSala()
+      game.addVisual(spriteVida)
     }
     
   }
@@ -90,7 +92,6 @@ object juego{
     }
     game.addVisual(player)
 
-    player.seteoVida()
     game.addVisual(spriteVida)
     spriteVida.actualizarVida(player.vida())
     //game.addVisualCharacter(player)
@@ -139,6 +140,7 @@ object juego{
   method terminarJuego(){
     player.reiniciarStats()
     game.removeVisual(player)
+    game.removeVisual(spriteVida)
 
     game.addVisual(gameOver)
   }
