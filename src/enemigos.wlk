@@ -35,7 +35,7 @@ class Enemigo{
 
 }
 
-class Mosca inherits Enemigo {
+class Mosca inherits Enemigo{
   var property posicionInicial = position
   var property posicionAnterior = position
   var property y = -1
