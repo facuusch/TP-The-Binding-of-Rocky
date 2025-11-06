@@ -94,7 +94,8 @@ object derecha{
 
 object blito inherits Personaje{
   override method image() = "" + self + super()
-  method nuevaVida(){
+
+  method seteoVida(){
     vida = 7
   }
 }
