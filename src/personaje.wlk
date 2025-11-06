@@ -45,6 +45,9 @@ class Personaje {
 
   method asumirDanio(danioAsumido){
     vida = vida - ((danio * (1 - (escudo / (escudo + 10))))).truncate(0)
+
+    spriteVida.actualizarVida(vida)
+    
     if(vida <= 0 ){
       juego.terminarJuego()
     }
@@ -91,6 +94,9 @@ object derecha{
 
 object blito inherits Personaje{
   override method image() = "" + self + super()
+  method nuevaVida(){
+    vida = 7
+  }
 }
 
 object gabi inherits Personaje{
@@ -130,10 +136,22 @@ class Proyectil {
   method mover(sentido){
     position = sentido.nuevaPosicion(position)
     if(outOfBounds.verificar(position)){
-      game.removeTickEvent("Disparo" + id)
+      game.removeTickEvent("Disparo" + self.id().toString())
       game.removeVisual(self)
     }
   }
 
    method colisionarCon(arg0){}
+}
+
+object spriteVida{
+  var property vidaActual = 1
+  
+  var property position = game.at(0, 14) 
+  
+  method image() = "corazon_" + self.vidaActual().toString() + ".png"
+  
+  method actualizarVida(nuevaVida) {
+    self.vidaActual(nuevaVida)
+  }
 }

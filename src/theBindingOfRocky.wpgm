@@ -83,6 +83,8 @@ object juego{
     game.addVisual(sala_1)
     sala_1.cargarSala()
     
+    game.addVisual(spriteVida)
+
     player = mainMenu.obtenerPersonajeActual()
     if(not personajesIniciados.contains(player)){
       self.inicializarPersonaje(player)

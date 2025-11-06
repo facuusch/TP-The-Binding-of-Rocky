@@ -18,7 +18,7 @@ class Enemigo{
     vida -= danioPlayer
     if(vida <= 0){
       game.removeVisual(self)
-      game.removeTickEvent("moverEnemigo" + id)
+      game.removeTickEvent("moverEnemigo" + self.id().toString())
       juego.chequearTerminada()
     }
 
