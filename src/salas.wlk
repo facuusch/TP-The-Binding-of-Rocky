@@ -3,6 +3,7 @@ import wollok.game.*
 import utils.*
 import enemigos.*
 import src.theBindingOfRocky.juego
+import items.*
 
 
 //0 vacio
@@ -45,6 +46,9 @@ class Sala{
         if(tipo == 3){
             elemento = new Mosca(position = game.at(x,y), id = enemigos.size())
             elemento.agregarEnemigo(enemigos)
+        }
+        if(tipo == 5){
+            game.addVisual(oktubre)
         }
 
         if(elemento != null){
@@ -104,7 +108,7 @@ object sala_1 inherits Sala(){
         self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(13,    [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])
         self.dibujarLineaDeElementos(12,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(11,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(11,    [0,0,0,0,0,0,0,5,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(10,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(9,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(8,     [0,0,0,3,0,0,0,1,0,0,0,3,0,0,0])

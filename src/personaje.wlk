@@ -42,6 +42,7 @@ class Personaje {
     game.removeVisual(item)
     self.cambiarSprite(spriteAlternativo)
   }
+
   method agarrarItemStats(item){
     game.removeVisual(item)
     item.cambiarStats(self)

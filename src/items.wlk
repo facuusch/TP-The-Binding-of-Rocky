@@ -1,3 +1,4 @@
+import src.personaje.*
 import wollok.game.*
 import utils.*
 
@@ -18,17 +19,30 @@ class ItemBasico inherits Item{
 }
 
 class ItemVida inherits Item{
-  var property vidaExtra = 3
-  override method colisionarCon (personaje){
-    personaje.agarrarItemStats(self)
-  }
+  const vidaExtra = 3
+  var vidaActual = 0
+  // override method colisionarCon(personaje){
+  //   personaje.agarrarItemStats(self)
+  // }
   method cambiarStats(personaje){
-    personaje.vida().sumarStat(vidaExtra)
+    vidaActual = personaje.vida()
+    vidaActual += vidaExtra
+    if(vidaActual > 10){
+      vidaActual = 10
+    }
+    personaje.vida(vidaActual)
+    spriteVida.actualizarVida(vidaActual)
   }
 }
 
 object oktubre inherits ItemVida{
-
+  method image() = "oktubre.png"
+  override method colisionarCon(personaje){
+    personaje.agarrarItemStats(self)
+    const sonido = game.sound("oktubre.mp3")
+    sonido.volume(0.2)
+    sonido.play()
+  }
 }
 
 object arma inherits ItemBasico{
