@@ -1,0 +1,10 @@
+import src.personaje.*
+import src.salas.*
+import wollok.game.*
+
+test "Blito recibe daño fijo del pincho"{
+    blito.vida(7)
+    const pincho = new Pincho(position = game.at(1,2)) 
+    pincho.colisionarCon(blito) 
+    assert.equals(5, blito.vida())
+}

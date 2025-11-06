@@ -103,6 +103,10 @@ object blito inherits Personaje(vida = 7){
 
 object gabi inherits Personaje{
   override method image() = "" + self + super()
+
+  method seteoVida(){
+    vida = 4
+  }
 }
 
 object tuca inherits Personaje{
