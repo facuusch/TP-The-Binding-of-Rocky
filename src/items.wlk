@@ -35,11 +35,50 @@ class ItemVida inherits Item{
   }
 }
 
+class ItemDanio inherits Item{
+  const danioExtra = 3
+  var danioActual = 0
+  // override method colisionarCon(personaje){
+  //   personaje.agarrarItemStats(self)
+  // }
+  method cambiarStats(personaje){
+    danioActual = personaje.danio()
+    danioActual += danioExtra
+
+  //le puse un limitante momentaneo que despues definiremos bien
+  if(danioActual > 8){ 
+      danioActual = 8
+     }
+    personaje.danio(danioActual)
+    spriteDanio.actualizarDanio(danioActual)
+  }
+}
+
 object oktubre inherits ItemVida{
   method image() = "oktubre.png"
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
     const sonido = game.sound("oktubre.mp3")
+    sonido.volume(0.2)
+    sonido.play()
+  }
+}
+
+object hamburguesa inherits ItemVida{
+  method image() = "hamburguesa.png"
+  override method colisionarCon(personaje){
+    personaje.agarrarItemStats(self)
+    const sonido = game.sound("hamburguesa.mp3")
+    sonido.volume(0.2)
+    sonido.play()
+  }
+}
+
+object brocoli inherits ItemDanio{
+  method image() = "brocoli.png"
+  override method colisionarCon(personaje){
+    personaje.agarrarItemStats(self)
+    const sonido = game.sound("brocoli.mp3")
     sonido.volume(0.2)
     sonido.play()
   }

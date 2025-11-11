@@ -125,9 +125,9 @@ class NuevoMonstruoA inherits Enemigo {
   var property direccion = 1
 
   //puntos clave del recorrido
-  var property inicio = game.at(0, 15)
+  var property inicio = game.at(0, 14)
   var property medio = game.at(7, 8)
-  var property fin = game.at(14, 15)
+  var property fin = game.at(14, 14)
 
   method posInicial() {
     position = inicio
@@ -142,7 +142,7 @@ class NuevoMonstruoA inherits Enemigo {
 
   override method movimiento() {
 
-    //movimiento en forma de V: (0,15) a (7,8) a (14,15) y vuelve
+    //movimiento en forma de V: (0,14) a (7,8) a (14,14) y vuelve
     if (direccion == 1) {
       //baja hacia la derecha
       self.moverDiagonal(1, -1)
@@ -158,7 +158,7 @@ class NuevoMonstruoA inherits Enemigo {
       //sube hacia la derecha
       self.moverDiagonal(1, 1)
 
-      //llegó al final (14,15) y cambia sentido
+      //llegó al final (14,14) y cambia sentido
       if (position.x() == fin.x() and position.y() == fin.y()) {
         direccion = -2
       }
@@ -197,9 +197,9 @@ class NuevoMonstruoB inherits Enemigo {
   var property direccion = 1
 
   //puntos clave del recorrido
-  var property inicio = game.at(15, 0)
+  var property inicio = game.at(14, 0)
   var property medio = game.at(7, 8)
-  var property fin = game.at(0, 1)
+  var property fin = game.at(0, 0)
 
   method posInicial() {
     position = inicio
@@ -214,7 +214,7 @@ class NuevoMonstruoB inherits Enemigo {
 
   override method movimiento() {
 
-    //movimiento en forma de V invertida: (15,0) a (7,8) a (0,1) y vuelve
+    //movimiento en forma de V invertida: (14,0) a (7,8) a (0,0) y vuelve
     if (direccion == 1) {
       // sube hacia la izquierda
       self.moverDiagonal(-1, 1)
