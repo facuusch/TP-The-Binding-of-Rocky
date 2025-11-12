@@ -21,6 +21,8 @@ class Enemigo{
       game.removeTickEvent("moverEnemigo" + self.id().toString())
       juego.chequearTerminada()
     }
+
+    bala.destruir()
   }
 
   method movimiento(){}
@@ -117,7 +119,7 @@ class Cv inherits Enemigo {
 }
 
 
-class NuevoMonstruoA inherits Enemigo {
+class Mostro inherits Enemigo {
 
   method image() = "mostro.png"
 
