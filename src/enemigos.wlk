@@ -14,11 +14,11 @@ class Enemigo{
     personaje.asumirDanio(danio)
   }
 
-  method pegar(danioPlayer){
+  method pegar(danioPlayer, bala){
     vida -= danioPlayer
     if(vida <= 0){
       game.removeVisual(self)
-      game.removeTickEvent("moverEnemigo" + id)
+      game.removeTickEvent("moverEnemigo" + self.id().toString())
       juego.chequearTerminada()
     }
   }
@@ -26,7 +26,7 @@ class Enemigo{
   method movimiento(){}
 
   method agregarEnemigo(enemigos){
-    game.addVisual(self)
+    //game.addVisual(self)
     enemigos.add(self)
     game.onTick(800, "moverEnemigo" + id.toString(), {self.movimiento()})
    }
@@ -119,7 +119,7 @@ class Cv inherits Enemigo {
 
 class NuevoMonstruoA inherits Enemigo {
 
-  method image() = "monstruoA.png"
+  method image() = "mostro.png"
 
   //dirección actual
   var property direccion = 1

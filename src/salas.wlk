@@ -47,6 +47,10 @@ class Sala{
             elemento = new Mosca(position = game.at(x,y), id = enemigos.size())
             elemento.agregarEnemigo(enemigos)
         }
+        if(tipo == 4){
+            elemento = new Cv(position = game.at(x,y), id = enemigos.size())
+            elemento.agregarEnemigo(enemigos)
+        }
         if(tipo == 5){
             game.addVisual(oktubre)
         }
