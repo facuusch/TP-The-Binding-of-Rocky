@@ -56,7 +56,9 @@ class Sala{
             elemento.agregarEnemigo(enemigos)
         }
         if(tipo == 6){
-            game.addVisual(oktubre)
+            elemento = oktubre
+            elemento.position(game.at(x, y))
+            obstaculos.add(elemento)
         }
 
         if(elemento != null){
@@ -65,8 +67,17 @@ class Sala{
     }
 
     method borrarElementos() {
-        obstaculos.forEach({ obstaculo => game.removeVisual(obstaculo) })
+        obstaculos.forEach({ obstaculo => 
+        if(game.hasVisual(obstaculo)){
+            game.removeVisual(obstaculo)
+        }})
         obstaculos.clear()
+
+        enemigos.forEach({ enemigo => 
+        if(game.hasVisual(enemigo)){
+            game.removeVisual(enemigo)
+        }})
+        enemigos.clear()
     }
     method pegar(arg0, arg1){}
     method colisionarCon(arg0){}
@@ -123,7 +134,7 @@ object sala_1 inherits Sala(){
         self.dibujarLineaDeElementos(7,     [0,0,0,0,0,0,1,1,1,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(6,     [0,0,0,0,0,1,1,1,1,1,0,0,0,0,0])
         self.dibujarLineaDeElementos(5,     [0,0,0,0,0,0,1,1,1,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(4,     [0,0,0,5,0,0,0,1,0,0,0,3,0,0,0])
+        self.dibujarLineaDeElementos(4,     [0,0,0,3,0,0,0,1,0,0,0,3,0,0,0])
         self.dibujarLineaDeElementos(3,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])  
         self.dibujarLineaDeElementos(2,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(1,     [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])

@@ -21,9 +21,7 @@ class ItemBasico inherits Item{
 class ItemVida inherits Item{
   const vidaExtra = 3
   var vidaActual = 0
-  // override method colisionarCon(personaje){
-  //   personaje.agarrarItemStats(self)
-  // }
+
   method cambiarStats(personaje){
     vidaActual = personaje.vida()
     vidaActual += vidaExtra
@@ -38,9 +36,7 @@ class ItemVida inherits Item{
 class ItemDanio inherits Item{
   const danioExtra = 3
   var danioActual = 0
-  // override method colisionarCon(personaje){
-  //   personaje.agarrarItemStats(self)
-  // }
+  
   method cambiarStats(personaje){
     danioActual = personaje.danio()
     danioActual += danioExtra

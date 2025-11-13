@@ -1,14 +1,30 @@
+import src.items.*
 import src.personaje.*
 import src.enemigos.*
 import src.salas.*
 import wollok.game.*
 
-test "Blito recibe daño fijo del pincho"{
-    blito.vida(7)
+describe "Tests de personaje"{
+  test "Blito recibe daño fijo del pincho"{
+    //blito.vida(7)
     const pincho = new Pincho(position = game.at(1,2)) 
     pincho.colisionarCon(blito) 
     assert.equals(5, blito.vida())
+  }
+
+  test "Daño inicial de Gabi"{
+    assert.equals(6, gabi.vida())
+  }
+  
+  test "Facu agarra un item de vida"{
+    const mejoraVida = new ItemVida()
+    facu.agarrarItemStats(mejoraVida)
+    assert.equals(8, facu.vida())
+  }
+
+  
 }
+
 
 test "La bala destruye al enemigo"{
   const mosca = new Mosca(position = game.at(2,3))

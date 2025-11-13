@@ -23,8 +23,6 @@ program theBindingOfRocky {
       } else{
         juego.reiniciarJuego()
       }
-      //juego.cambiarPersonaje()
-      //juego.reiniciarJuego()
     }
     if(game.hasVisual(gameOver)){
       game.removeVisual(gameOver)
@@ -77,7 +75,6 @@ object juego{
 
   method chequearTerminada(){
     (salas.get(salaActual)).chequearVacia()
-    //aca iria tambien un chequeo si piso botones o activo una palanca o algo por el estilo
   }
 
   method iniciarJuego(){
@@ -134,25 +131,33 @@ object juego{
         elemento.colisionarCon(personaje)
     })
 
-    //game.removeVisual(personaje)
   }
 
   method terminarJuego(){
     player.reiniciarStats()
     game.removeVisual(player)
     game.removeVisual(spriteVida)
+    salas.get(salaActual).borrarSala()
+    game.removeVisual(salas.get(salaActual))
 
     game.addVisual(gameOver)
   }
 
   method reiniciarJuego(){
+    salaActual = 0
+
     player = mainMenu.obtenerPersonajeActual()
     player.reiniciarStats()
     if(not personajesIniciados.contains(player)){
       self.inicializarPersonaje(player)
       personajesIniciados.add(player)
     }
+    
+    game.addVisual(salas.get(salaActual))
+    salas.get(salaActual).cargarSala()
+
     game.addVisual(player)
-    sala_1.cargarSala()
+    game.addVisual(spriteVida)
+    spriteVida.actualizarVida(player.vida())
   }
 }
