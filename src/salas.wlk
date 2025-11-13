@@ -57,10 +57,18 @@ class Sala{
             elemento.agregarEnemigo(enemigos)
         }
         if(tipo == 6){
-            elemento = oktubre
+            elemento = itemBasico
+            obstaculos.add(elemento)
+        }
+        if(tipo == 7){
+            elemento = empanada
             elemento.position(game.at(x, y))
             obstaculos.add(elemento)
         }
+        if(tipo == 8){
+
+        }
+
 
         if(elemento != null){
             game.addVisual(elemento)

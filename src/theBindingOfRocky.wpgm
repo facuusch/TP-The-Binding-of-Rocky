@@ -41,7 +41,6 @@ program theBindingOfRocky {
         mainMenu.retrocederPersonaje()
       }
     })
-  //keyboard.h().onPressDo({game.say(player, "me queda " + player.vida() + " vida")})
 
   game.start()
 }
@@ -53,9 +52,10 @@ object juego{
   var property salaActual = 0
   const personajesIniciados = []
 
-  method fueIniciado() = iniciado//game.hasVisual(player)
+  method fueIniciado() = iniciado
   method cambiarPersonaje(){
     player = mainMenu.obtenerPersonajeActual()
+    itemBasico.setearImagenSonido(player)
   }
 
   method pasarNivel(){
@@ -79,19 +79,21 @@ object juego{
 
   method iniciarJuego(){
     iniciado = true
+    
     game.addVisual(sala_1)
     sala_1.cargarSala()
 
     player = mainMenu.obtenerPersonajeActual()
+    itemBasico.setearImagenSonido(player)
     if(not personajesIniciados.contains(player)){
       self.inicializarPersonaje(player)
       personajesIniciados.add(player)
     }
     game.addVisual(player)
 
+    
     game.addVisual(spriteVida)
     spriteVida.actualizarVida(player.vida())
-    //game.addVisualCharacter(player)
 
     keyboard.w().onPressDo({
       player.disparar(arriba)
@@ -105,17 +107,10 @@ object juego{
     keyboard.d().onPressDo({
       player.disparar(derecha)
     })
-    
-
-    // game.onCollideDo(player, { elemento =>
-    //     elemento.colisionarCon(player)
-    // })
 
   }
 
   method inicializarPersonaje(personaje){
-    //game.addVisualCharacter(personaje)
-
     //
     keyboard.up().onPressDo({ 
       if(personaje.position().y() < game.height()-1) personaje.mover(arriba) })
@@ -147,6 +142,7 @@ object juego{
     salaActual = 0
 
     player = mainMenu.obtenerPersonajeActual()
+    itemBasico.setearImagenSonido(player)
     player.reiniciarStats()
     if(not personajesIniciados.contains(player)){
       self.inicializarPersonaje(player)
