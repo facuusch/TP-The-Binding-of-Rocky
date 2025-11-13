@@ -77,7 +77,7 @@ Este proyecto hace un uso intensivo de los **principios de Programación Orienta
 - Se crean **objetos concretos** (por ejemplo `blito`, `gabi`, `hamburguesa`, `brocoli`) que son instancias de esas clases o heredan de ellas.
 
 📌 Ejemplo:
-```wollok
+wollok
 object blito inherits Personaje(vida = 7, danio = 3)
 
 ##Explicación Teórica:
