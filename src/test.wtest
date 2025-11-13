@@ -13,6 +13,13 @@ describe "Tests de personaje"{
     assert.equals(5, blito.vida())
   }
 
+  test "Tuca recibe daño de mosca"{ 
+    //tuca.vida(6) 
+    const mosca = new mosca(position = game.origin) 
+    mosca.colisionarCon(tuca) 
+    assert.equals(4, blito.vida()) 
+  }
+
   test "Daño inicial de Gabi"{
     assert.equals(6, gabi.danio())
   }
@@ -48,4 +55,9 @@ test "Pasar nivel"{
   const nivel = juego.salaActual()
   juego.pasarNivel()
   assert.equals(nivel + 1, juego.salaActual())
+}
+
+test "Gabi agarra un item de daño y aumenta su poder de ataque"{
+    brocoli.colisionarCon(gabi)
+    assert.equals(8, gabi.danio())
 }
