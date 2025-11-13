@@ -79,3 +79,15 @@ Este proyecto hace un uso intensivo de los **principios de Programación Orienta
 📌 Ejemplo:
 ```wollok
 object blito inherits Personaje(vida = 7, danio = 3)
+
+##Explicación Teórica:
+
+En el diseño del sistema de menús del juego, utilizamos objetos para representar las distintas pantallas: el menú principal, la pantalla de derrota (Game Over) y la pantalla de victoria (pantallaWin). Cada uno de estos objetos tiene su propia imagen asociada y su posición dentro del juego, lo que nos permite mostrarlos en distintos momentos del flujo del juego según corresponda.
+
+El objeto mainMenu es el encargado de gestionar la selección de personajes. A través de una lista que contiene a todos los personajes disponibles (blito, gabi, tuca, manu y facu), el menú permite desplazarse entre ellos modificando el índice de selección con los métodos avanzarPersonaje() y retrocederPersonaje(). De esta manera, se actualiza la imagen del menú (spriteMenu) para reflejar visualmente el personaje seleccionado en cada momento.
+
+El método obtenerPersonajeActual() permite acceder fácilmente al personaje que el jugador haya elegido, lo cual facilita la comunicación con otras partes del juego, por ejemplo, cuando se inicia la partida. Esta estructura modular hace que el código sea más claro y flexible, ya que el control de la selección de personajes queda completamente delegado en el menú, evitando que otras partes del juego tengan que conocer la lógica interna de cómo se realiza la selección.
+
+Los objetos gameOver y pantallaWin cumplen un rol más simple pero fundamental: representar visualmente los estados finales del juego. Ambos comparten una estructura similar, con una posición (definida en el origen del juego) y un método image() que devuelve la imagen correspondiente a la pantalla que se debe mostrar. Esta similitud de estructura facilita la extensión del código en el futuro, por ejemplo, si se quisieran agregar animaciones o botones de reinicio.
+
+En resumen, esta parte del diseño aplica los principios de modularidad y encapsulamiento. Cada pantalla u objeto tiene una responsabilidad clara y separada, lo que simplifica tanto la comprensión como el mantenimiento del código. El mainMenu se encarga de la lógica interactiva de selección, mientras que gameOver y pantallaWin gestionan la representación de estados finales del juego.
