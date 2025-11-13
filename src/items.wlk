@@ -25,6 +25,10 @@ object itemBasico inherits Item{
   }
 
   override method colisionarCon (personaje){
+    if(not game.hasVisual(self)){
+    throw new Exception(message = "Error interno: el item ya fue recogido
+    o eliminado.")
+    }
     personaje.agarrarItemBasico(self)
     sonido.play()
   }
@@ -62,22 +66,30 @@ class ItemDanio inherits Item{
   }
 }
 
-object pocion inherits ItemVida{
-  method image() = "pocion.png"
+object empanada inherits ItemVida{
+  method image() = "empanada.png"
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
-    if (vidaProvisoria>10){game.say(personaje, "Mi vida alcanzó el máximo posible: 10")}
-    const sonido = game.sound("pocion.mp3")
+    if (vidaProvisoria>10){
+    throw new UserException(message = "Tu personaje alcanzó la máxima
+    vida posible del juego, la cual equivale a 10.")
+    game.say(personaje, "Mi vida alcanzó el máximo posible: 10")
+  }
+    const sonido = game.sound("comer.mp3")
     sonido.volume(0.2)
     sonido.play()
   }
 }
 
-object manzana inherits ItemVida{
-  method image() = "manzana.png"
+object hamburguesa inherits ItemVida{
+  method image() = "hamburguesa.png"
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
-    if (vidaProvisoria>10){game.say(personaje, "Mi vida alcanzó el máximo posible: 10")}
+    if (vidaProvisoria>10){
+    throw new UserException(message = "Tu personaje alcanzó la máxima
+    vida posible del juego, la cual equivale a 10.")
+    game.say(personaje, "Mi vida alcanzó el máximo posible: 10")
+  }
     const sonido = game.sound("comer.mp3")
     sonido.volume(0.2)
     sonido.play()
@@ -85,8 +97,8 @@ object manzana inherits ItemVida{
 }
 
 //como solo hay un item de daño lo representamos con un objeto
-object espada inherits Item{
-  method image() = "espada.png"
+object brocoli inherits Item{
+  method image() = "brocoli.png"
   const danioExtra = 3
   var danioActual = 0
   var danioProvisorio = 0
@@ -106,11 +118,11 @@ object espada inherits Item{
   override method colisionarCon(personaje){
   
     personaje.agarrarItemStats(self)
-
+    
     if (danioProvisorio<=8){game.say(personaje, "Mi daño es: " + personaje.danio())}
     else if (danioProvisorio>8){game.say(personaje, "Mi daño alcanzó el máximo posible: 8")}
-
-    const sonido = game.sound("espada.mp3")
+  
+    const sonido = game.sound("comer.mp3")
     sonido.volume(0.2)
     sonido.play()
   }
