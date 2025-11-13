@@ -40,7 +40,10 @@ class Sala{
     }
 
     method agregarElementoEn(x, y, tipo){
-        var elemento
+      if(tipo < 0 or tipo > 9){
+        throw new Exception(message = "Error interno: tipo de elemento (" + tipo.toString() + ") se desconoce, se debe ingresar tipo equivalente al rango de 0 a 9 inclusive.")
+    }
+       var elemento
         if(tipo == 1){
             elemento = new Pared(position = game.at(x,y))
             obstaculos.add(elemento)
