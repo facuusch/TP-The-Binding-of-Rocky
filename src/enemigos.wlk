@@ -54,8 +54,9 @@ class Mosca inherits Enemigo {
     posicionAnterior = position
     position = sentido.nuevaPosicion(position)
 
-    if(outOfBounds.verificar(position)){
-      position = posicionAnterior
+    if(outOfBounds.verificar(position)){  
+    throw new Exception(message = "Error interno: El enemigo Mosca intentó salir del mapa.")
+   position = posicionAnterior
     }
   }
 
@@ -83,21 +84,33 @@ class Cv inherits Enemigo(vida = 10) {
   method image() = "cv.png"
   var property z = 1
   method moverArriba(){
+  if(outOfBounds.verificar(nuevaPos)){
+  throw new Exception(message = "Error interno: El enemigo Cv intentó salir del mapa.")
+  }
     position = position.up(1)
     z = 2
   }
 
   method moverAbajo(){
+ if(outOfBounds.verificar(nuevaPos)){
+  throw new Exception(message = "Error interno: El enemigo Cv intentó salir del mapa.")
+  }
     position = position.down(1)
     z = 4
   }
 
   method moverIzquierda(){
+ if(outOfBounds.verificar(nuevaPos)){
+  throw new Exception(message = "Error interno: El enemigo Cv intentó salir del mapa.")
+  }
     position = position.left(1)
     z = 1
   }
 
   method moverDerecha(){
+ if(outOfBounds.verificar(nuevaPos)){
+  throw new Exception(message = "Error interno: El enemigo Cv intentó salir del mapa.")
+  }
     position = position.right(1)
     z = 3
   }
@@ -138,7 +151,7 @@ class Mostro inherits Enemigo (vida = 12) {
       return false
     } 
     else {
-    throw new Exception(message = "Error interno: El enemigo intentó salir del mapa.")
+    throw new Exception(message = "Error interno: El enemigo Mostro intentó salir del mapa.")
     return not false
     }
   }
@@ -212,7 +225,7 @@ class Mostra inherits Enemigo (vida = 12){
       return false
     } 
     else {
-    throw new Exception(message = "Error interno: El enemigo intentó salir del mapa.")
+    throw new Exception(message = "Error interno: El enemigo Mostra intentó salir del mapa.")
     return not false
     }
   }
