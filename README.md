@@ -37,7 +37,7 @@ Cada personaje tiene distintos valores de **vida** y **daño**, lo que afecta su
 |------------|------|------|------------|-------------------|
 | 🔪 **Blito** | 7 | 3 | Cuchillo | Equilibrado, resistente. |
 | 🔫 **Gabi** | 4 | 6 | Bala | Alto daño, baja vida. |
-| 🪄 **Tuca** | 6 | 4 | Magia | Más aguante, menos ataque. |
+| 🪄  **Tuca** | 6 | 4 | Magia | Más aguante, menos ataque. |
 | 🎵 **Manu** | 8 | 2 | Nota musical | Mucha vida, poco daño. |
 | 🏹 **Facu** | 5 | 5 | Flechas | Promedio en todo. |
 
