@@ -136,7 +136,9 @@ class Mostro inherits Enemigo (vida = 12) {
     if (not outOfBounds.verificar(nuevaPos)){ 
       position = nuevaPos
       return false
-    } else {
+    } 
+    else {
+    throw new Exception(message = "Error interno: El enemigo intentó salir del mapa.")
     return not false
     }
   }
@@ -208,7 +210,9 @@ class Mostra inherits Enemigo (vida = 12){
     if (not outOfBounds.verificar(nuevaPos)){
       position = nuevaPos
       return false
-    } else {
+    } 
+    else {
+    throw new Exception(message = "Error interno: El enemigo intentó salir del mapa.")
     return not false
     }
   }
