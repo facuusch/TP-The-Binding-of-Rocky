@@ -125,32 +125,31 @@ class Mostro inherits Enemigo {
 
   //dirección actual
   var property direccion = 1
-
   //puntos clave del recorrido
   var property inicio = game.at(0, 14)
   var property medio = game.at(7, 8)
   var property fin = game.at(14, 14)
 
-  method posInicial() {
-    position = inicio
-  }
 
   method moverDiagonal(dx, dy) {
-    const nuevaPos = position.add(dx, dy)
+    const nuevaPos = game.at(self.position().x() + dx, self.position().y() + dy)
     if (not outOfBounds.verificar(nuevaPos)) {
       position = nuevaPos
+      return false
+    } else {
+    return true
     }
   }
 
   override method movimiento() {
-
+    var afuera
     //movimiento en forma de V: (0,14) a (7,8) a (14,14) y vuelve
     if (direccion == 1) {
       //baja hacia la derecha
-      self.moverDiagonal(1, -1)
+      afuera = self.moverDiagonal(1, -1)
 
       //llegó al punto medio (7,8)
-      if (position.x() == medio.x() and position.y() == medio.y()) {
+      if (position.x() == medio.x() and position.y() == medio.y() or afuera) {
         direccion = 2
       }
 
@@ -158,10 +157,10 @@ class Mostro inherits Enemigo {
     
     else if (direccion == 2) {
       //sube hacia la derecha
-      self.moverDiagonal(1, 1)
+      afuera = self.moverDiagonal(1, 1)
 
       //llegó al final (14,14) y cambia sentido
-      if (position.x() == fin.x() and position.y() == fin.y()) {
+      if (position.x() == fin.x() and position.y() == fin.y() or afuera) {
         direccion = -2
       }
 
@@ -169,10 +168,10 @@ class Mostro inherits Enemigo {
     
     else if (direccion == -2) {
       //baja hacia la izquierda
-      self.moverDiagonal(-1, -1)
+      afuera = self.moverDiagonal(-1, -1)
 
       //volvió al medio (7,8)
-      if (position.x() == medio.x() and position.y() == medio.y()) {
+      if (position.x() == medio.x() and position.y() == medio.y() or afuera) {
         direccion = -1
       }
 
@@ -180,10 +179,10 @@ class Mostro inherits Enemigo {
     
     else if (direccion == -1) {
       //sube hacia la izquierda
-      self.moverDiagonal(-1, 1)
+      afuera = self.moverDiagonal(-1, 1)
 
       //volvió al inicio y reinicia el ciclo
-      if (position.x() == inicio.x() and position.y() == inicio.y()) {
+      if (position.x() == inicio.x() and position.y() == inicio.y() or afuera) {
         direccion = 1
       }
     }
