@@ -59,6 +59,7 @@ class Sala{
         }
         if(tipo == 6){
             elemento = itemBasico
+            elemento.position(game.at(x, y))
             obstaculos.add(elemento)
         }
         if(tipo == 7){
@@ -67,7 +68,14 @@ class Sala{
             obstaculos.add(elemento)
         }
         if(tipo == 8){
-
+            elemento = hamburguesa
+            elemento.position(game.at(x, y))
+            obstaculos.add(elemento)
+        }
+        if(tipo == 9){
+            elemento = brocoli
+            elemento.position(game.at(x, y))
+            obstaculos.add(elemento)
         }
 
 

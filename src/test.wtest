@@ -3,6 +3,7 @@ import src.personaje.*
 import src.enemigos.*
 import src.salas.*
 import wollok.game.*
+import src.theBindingOfRocky.juego
 
 describe "Tests de personaje"{
   test "Blito recibe daño fijo del pincho"{
@@ -30,6 +31,7 @@ describe "Tests de personaje"{
     assert.equals(8, manu.vida())
     assert.equals(2, manu.danio())
   }
+
 }
 
 
@@ -40,4 +42,10 @@ describe "Tests de enemigos"{
     mosca.pegar(3, bala)
     assert.equals(3, mosca.vida())
   }
+}
+
+test "Pasar nivel"{
+  const nivel = juego.salaActual()
+  juego.pasarNivel()
+  assert.equals(nivel + 1, juego.salaActual())
 }
