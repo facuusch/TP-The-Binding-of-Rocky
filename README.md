@@ -50,7 +50,6 @@ Cada enemigo hereda del **Enemigo base**, con comportamientos de movimiento dist
 - **Mosca:** se mueve verticalmente rebotando.  
 - **Cv:** se desplaza en forma cuadrada.  
 - **Mostro:** se mueve en una trayectoria en “V”.  
-- **NuevoMonstruoB:** se mueve en una “V” invertida.  
 
 Cada enemigo puede causar daño al jugador y debe ser derrotado para pasar de sala.
 
@@ -60,9 +59,9 @@ Cada enemigo puede causar daño al jugador y debe ser derrotado para pasar de sa
 
 Durante el juego, el jugador puede encontrar ítems que otorgan mejoras:
 
-- **Hamburguesa / Oktubre:** aumentan la vida (hasta un máximo de 10).  
-- **Brócoli:** aumenta el daño (hasta un máximo de 8).  
-- **Arma:** cambia el sprite del personaje al alternativo.
+- **Manzana / Pocion:** aumentan la vida (hasta un máximo de 10).  
+- **Espada:** aumenta el daño (hasta un máximo de 8).  
+- **Disco:** cambia el sprite del personaje al alternativo.
 
 Cada ítem reproduce un sonido característico al ser recogido.
 
@@ -72,7 +71,7 @@ Cada ítem reproduce un sonido característico al ser recogido.
 
 ### 🔹 **Clases y Objetos**
 - Se definen **clases** como `Personaje`, `Enemigo`, `Item`, `Proyectil` que sirven como moldes.  
-- Se crean **objetos concretos** (por ejemplo `blito`, `gabi`, `hamburguesa`, `brocoli`) que son instancias de esas clases o heredan de ellas.
+- Se crean **objetos concretos** (por ejemplo `blito`, `gabi`, `manzana`, `pocion`) que son instancias de esas clases o heredan de ellas.
 
 ## Explicación Teórica:
 
