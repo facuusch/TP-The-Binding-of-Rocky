@@ -37,6 +37,22 @@ class ItemVida inherits Item{
   }
 }
 
+class ItemDanio inherits Item{
+  const danioExtra = 3
+  var danioActual = 0
+  
+  method cambiarStats(personaje){
+    danioActual = personaje.danio()
+    danioActual += danioExtra
+
+  //le puse un limitante momentaneo que despues definiremos bien
+  if(danioActual > 8){ 
+      danioActual = 8
+     }
+    personaje.danio(danioActual)
+  }
+}
+
 object oktubre inherits ItemVida{
   method image() = "oktubre.png"
   override method colisionarCon(personaje){

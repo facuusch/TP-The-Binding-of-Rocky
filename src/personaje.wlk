@@ -13,23 +13,15 @@ class Personaje {
   var property spriteActual = spriteBasico
   var property vida = 10
   var property danio = 3
-  var property escudo = 4
+  var property escudo = 2
   var recargando = false
   var idBala = 0
   var posicionAnterior = position
 
-  method spriteBala() = "proyectil"
+  method spriteBala() = ""
 
   method reiniciarPosicion(){
     position = game.at(7,0)
-  }
-
-  method reiniciarStats(){
-    self.reiniciarPosicion()
-    spriteActual = spriteBasico
-    vida = 10
-    danio = 3
-    escudo = 2
   }
 
   method mover(sentido){
@@ -109,26 +101,70 @@ object derecha{
   method nuevaPosicion(posicionActual) = posicionActual.right(1)
 }
 
-object blito inherits Personaje(vida = 7){
+object blito inherits Personaje(vida = 7, danio = 3){
   override method image() = "" + self + super()
 
   override method spriteBala() = "cuchillo"
+
+  method reiniciarStats(){
+    self.reiniciarPosicion()
+    spriteActual = spriteBasico
+    vida = 7
+    danio = 3
+  }
 }
 
-object gabi inherits Personaje(vida = 4){
+object gabi inherits Personaje(vida = 4, danio = 6){
   override method image() = "" + self + super()
 
   override method spriteBala() = "bala"
 
+  method reiniciarStats(){
+    self.reiniciarPosicion()
+    spriteActual = spriteBasico
+    vida = 4
+    danio = 6
+  }
 }
 
-object tuca inherits Personaje(vida= 6){
+object tuca inherits Personaje(vida= 6, danio = 4){
+  override method image() = "" + self + super()
 
+  override method spriteBala() = "nose"
+
+  method reiniciarStats(){
+    self.reiniciarPosicion()
+    spriteActual = spriteBasico
+    vida = 6
+    danio = 4
+  }
 }
 
-object manu inherits Personaje(vida = 8){}
+object manu inherits Personaje(vida = 8, danio = 2){
+  override method image() = "" + self + super()
 
-object facu inherits Personaje(vida = 5){}
+  override method spriteBala() = "nota"
+
+  method reiniciarStats(){
+    self.reiniciarPosicion()
+    spriteActual = spriteBasico
+    vida = 8
+    danio = 2
+  }
+}
+
+object facu inherits Personaje(vida = 5, danio = 5){
+  override method image() = "" + self + super()
+
+  override method spriteBala() = "nose"
+
+  method reiniciarStats(){
+    self.reiniciarPosicion()
+    spriteActual = spriteBasico
+    vida = 5
+    danio = 5
+  }
+}
 
 class Proyectil {
   var property position = game.origin()
