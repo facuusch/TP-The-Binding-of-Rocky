@@ -84,7 +84,7 @@ class Cv inherits Enemigo(vida = 10) {
   method image() = "cv.png"
   var property z = 1
   method moverArriba(){
-  if(outOfBounds.verificar(nuevaPos)){
+  if(outOfBounds.verificar(self.position())){
   throw new Exception(message = "Error interno: El enemigo Cv intentó salir del mapa.")
   }
     position = position.up(1)
@@ -92,7 +92,7 @@ class Cv inherits Enemigo(vida = 10) {
   }
 
   method moverAbajo(){
- if(outOfBounds.verificar(nuevaPos)){
+ if(outOfBounds.verificar(self.position())){
   throw new Exception(message = "Error interno: El enemigo Cv intentó salir del mapa.")
   }
     position = position.down(1)
@@ -100,7 +100,7 @@ class Cv inherits Enemigo(vida = 10) {
   }
 
   method moverIzquierda(){
- if(outOfBounds.verificar(nuevaPos)){
+ if(outOfBounds.verificar(self.position())){
   throw new Exception(message = "Error interno: El enemigo Cv intentó salir del mapa.")
   }
     position = position.left(1)
@@ -108,7 +108,7 @@ class Cv inherits Enemigo(vida = 10) {
   }
 
   method moverDerecha(){
- if(outOfBounds.verificar(nuevaPos)){
+ if(outOfBounds.verificar(self.position())){
   throw new Exception(message = "Error interno: El enemigo Cv intentó salir del mapa.")
   }
     position = position.right(1)
@@ -151,7 +151,6 @@ class Mostro inherits Enemigo (vida = 12) {
       return false
     } 
     else {
-    throw new Exception(message = "Error interno: El enemigo Mostro intentó salir del mapa.")
     return not false
     }
   }
@@ -225,7 +224,6 @@ class Mostra inherits Enemigo (vida = 12){
       return false
     } 
     else {
-    throw new Exception(message = "Error interno: El enemigo Mostra intentó salir del mapa.")
     return not false
     }
   }

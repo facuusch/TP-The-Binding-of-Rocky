@@ -40,8 +40,8 @@ class Sala{
     }
 
     method agregarElementoEn(x, y, tipo){
-      if(tipo < 0 or tipo > 9){
-        throw new Exception(message = "Error interno: tipo de elemento (" + tipo.toString() + ") se desconoce, se debe ingresar tipo equivalente al rango de 0 a 9 inclusive.")
+      if(tipo < 0 or tipo > 10){
+        throw new Exception(message = "Error interno: tipo de elemento (" + tipo.toString() + ") se desconoce, se debe ingresar tipo equivalente al rango de 0 a 10 inclusive.")
     }
        var elemento
         if(tipo == 1){
@@ -179,8 +179,8 @@ object sala_2 inherits Sala(){
 
     method cargarSala(){
         self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(13,    [0,0,0,0,0,0,0,0,0,3,0,0,0,0,0])
-        self.dibujarLineaDeElementos(12,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(13,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(12,    [0,0,0,0,0,0,0,0,0,3,0,0,0,0,0])
         self.dibujarLineaDeElementos(11,    [0,0,0,0,2,2,2,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(10,    [0,0,0,1,0,0,0,1,0,0,0,1,0,0,0])
         self.dibujarLineaDeElementos(9,     [0,0,0,0,0,4,0,0,0,0,0,0,0,0,0])
@@ -205,8 +205,8 @@ object sala_3 inherits Sala(){
 
     method cargarSala(){
         self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(13,    [0,0,3,0,0,0,0,0,0,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(12,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(13,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(12,    [0,0,3,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(11,    [0,0,0,0,0,0,2,2,2,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(10,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(9,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
