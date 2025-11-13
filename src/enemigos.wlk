@@ -28,7 +28,6 @@ class Enemigo{
   method movimiento(){}
 
   method agregarEnemigo(enemigos){
-    //game.addVisual(self)
     enemigos.add(self)
     game.onTick(800, "moverEnemigo" + id.toString(), {self.movimiento()})
    }
@@ -79,7 +78,7 @@ class Mosca inherits Enemigo {
    
 }
 
-class Cv inherits Enemigo {
+class Cv inherits Enemigo(vida = 10) {
 
   method image() = "cv.png"
   var property z = 1
@@ -119,7 +118,7 @@ class Cv inherits Enemigo {
 }
 
 
-class Mostro inherits Enemigo {
+class Mostro inherits Enemigo (vida = 12) {
 
   method image() = "mostro.png"
 
@@ -133,7 +132,6 @@ class Mostro inherits Enemigo {
 
   method moverDiagonal(dx, dy) {
     const nuevaPos = game.at(self.position().x() + dx, self.position().y() + dy)
-    var afuera = false
 
     if (not outOfBounds.verificar(nuevaPos)){   //chequear este if dsp pq sale warning aaaa
       position = nuevaPos
@@ -192,7 +190,7 @@ class Mostro inherits Enemigo {
 }
 
 
-class Mostra inherits Enemigo{
+class Mostra inherits Enemigo (vida = 12){
 
   method image() = "mostro.png"
 
@@ -206,7 +204,6 @@ class Mostra inherits Enemigo{
 
   method moverDiagonal(dx, dy) {
     const nuevaPos = game.at(self.position().x() + dx, self.position().y() + dy)
-    var afuera = false
 
     if (not outOfBounds.verificar(nuevaPos)){   //chequear este if dsp pq sale warning aaaa
       position = nuevaPos

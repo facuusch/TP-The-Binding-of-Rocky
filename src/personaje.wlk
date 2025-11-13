@@ -130,7 +130,7 @@ object gabi inherits Personaje(vida = 4, danio = 6){
 object tuca inherits Personaje(vida= 6, danio = 4){
   override method image() = "" + self + super()
 
-  override method spriteBala() = "nose"
+  override method spriteBala() = "magia"
 
   method reiniciarStats(){
     self.reiniciarPosicion()
@@ -156,7 +156,7 @@ object manu inherits Personaje(vida = 8, danio = 2){
 object facu inherits Personaje(vida = 5, danio = 5){
   override method image() = "" + self + super()
 
-  override method spriteBala() = "nose"
+  override method spriteBala() = "flecha"
 
   method reiniciarStats(){
     self.reiniciarPosicion()

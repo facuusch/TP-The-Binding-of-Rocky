@@ -1,6 +1,7 @@
 import src.personaje.*
 import wollok.game.*
 import utils.*
+import src.theBindingOfRocky.juego
 
 class Item {
   var property position = posicionAleatoria.calcular()
@@ -10,11 +11,22 @@ class Item {
   }
 }
 
-//esto seria para el item que modifica el sprite pero no tengo los sprites alternativos aun :(
-class ItemBasico inherits Item{
+
+object itemBasico inherits Item{
+  var imagen = ""
+  method image() = imagen
+  var sonido = game.sound("")
+
+
+  method setearImagenSonido(nombrePersonaje){
+    imagen = "item_" + nombrePersonaje.toString() + ".png"
+    sonido = game.sound(nombrePersonaje.toString() + ".mp3")
+    sonido.volume(0.2)
+  }
+
   override method colisionarCon (personaje){
     personaje.agarrarItemBasico(self)
-    game.say(personaje, "Agarre el item: " + self)
+    sonido.play()
   }
 }
 
@@ -22,9 +34,6 @@ class ItemVida inherits Item{
   const vidaExtra = 3
   var vidaActual = 0
   var vidaProvisoria = 0
-  // override method colisionarCon(personaje){
-  //   personaje.agarrarItemStats(self)
-  // }
   method cambiarStats(personaje){
     vidaActual = personaje.vida()
     vidaProvisoria = vidaExtra + vidaActual
@@ -53,12 +62,12 @@ class ItemDanio inherits Item{
   }
 }
 
-object oktubre inherits ItemVida{
-  method image() = "oktubre.png"
+object empanada inherits ItemVida{
+  method image() = "empanada.png"
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
     if (vidaProvisoria>10){game.say(personaje, "Mi vida alcanzó el máximo posible: 10")}
-    const sonido = game.sound("oktubre.mp3")
+    const sonido = game.sound("comer.mp3")
     sonido.volume(0.2)
     sonido.play()
   }
@@ -69,7 +78,7 @@ object hamburguesa inherits ItemVida{
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
     if (vidaProvisoria>10){game.say(personaje, "Mi vida alcanzó el máximo posible: 10")}
-    const sonido = game.sound("hamburguesa.mp3")
+    const sonido = game.sound("comer.mp3")
     sonido.volume(0.2)
     sonido.play()
   }
@@ -96,17 +105,13 @@ object brocoli inherits Item{
 
   override method colisionarCon(personaje){
   
-  personaje.agarrarItemStats(self)
+    personaje.agarrarItemStats(self)
+    
+    if (danioProvisorio<=8){game.say(personaje, "Mi daño es: " + personaje.danio())}
+    else if (danioProvisorio>8){game.say(personaje, "Mi daño alcanzó el máximo posible: 8")}
   
-  if (danioProvisorio<=8){game.say(personaje, "Mi daño es: " + personaje.danio())}
-  else if (danioProvisorio>8){game.say(personaje, "Mi daño alcanzó el máximo posible: 8")}
-
-  const sonido = game.sound("brocoli.mp3")
-  sonido.volume(0.2)
-  sonido.play()
+    const sonido = game.sound("comer.mp3")
+    sonido.volume(0.2)
+    sonido.play()
   }
-}
-
-object arma inherits ItemBasico{
-  method image() = "pistola.png"
 }

@@ -3,13 +3,19 @@ import src.personaje.*
 import src.enemigos.*
 import src.salas.*
 import wollok.game.*
+import src.theBindingOfRocky.juego
 
 describe "Tests de personaje"{
   test "Blito recibe daño fijo del pincho"{
-    //blito.vida(7)
-    const pincho = new Pincho(position = game.at(1,2)) 
+    const pincho = new Pincho(position = game.origin()) 
     pincho.colisionarCon(blito) 
     assert.equals(5, blito.vida())
+  }
+
+  test "Tuca recibe daño de mosca"{ 
+    const mosca = new Mosca(position = game.origin()) 
+    mosca.colisionarCon(tuca) 
+    assert.equals(4, blito.vida()) 
   }
 
   test "Daño inicial de Gabi"{
@@ -30,14 +36,42 @@ describe "Tests de personaje"{
     assert.equals(8, manu.vida())
     assert.equals(2, manu.danio())
   }
+
+  test "Gabi agarra un item de daño y aumenta su poder de ataque"{
+    brocoli.colisionarCon(gabi)
+    assert.equals(8, gabi.danio())
+  }
+
 }
 
 
 describe "Tests de enemigos"{
-  test "La bala destruye al enemigo"{
-    const mosca = new Mosca(position = game.at(2,3))
+  test "Una bala le baja vida al enemigo"{
+    const mosca = new Mosca(position = game.origin())
     const bala = new Proyectil()
     mosca.pegar(3, bala)
     assert.equals(3, mosca.vida())
   }
+
+  test "Un enemigo rebota con el borde"{
+    const mosca = new Mosca(position = game.at(0, 15))
+    mosca.mover(arriba)
+    assert.equals(mosca.position().y(), 15)
+  }
 }
+
+describe "Tests de salas"{
+  test "Pasar nivel"{
+    const nivel = juego.salaActual()
+    juego.pasarNivel()
+    assert.equals(nivel + 1, juego.salaActual())
+  }
+
+  test "Se vacia la sala"{
+    game.addVisual(sala_1)
+    sala_1.cargarSala()
+    sala_1.borrarSala()
+    sala_1.chequearVacia()
+    assert.that(game.hasVisual(puerta))
+  }
+} 
