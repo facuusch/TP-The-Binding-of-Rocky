@@ -11,6 +11,7 @@ import items.*
 //2 pincho
 //3 mosca
 //4 cv
+//5 mostro
 
 class Sala{
     const enemigos = []
@@ -130,16 +131,15 @@ object sala_1 inherits Sala(){
         self.dibujarLineaDeElementos(11,    [0,0,0,0,0,0,0,6,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(10,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(9,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(8,     [0,0,0,3,0,0,0,1,0,0,0,3,0,0,0])
-        self.dibujarLineaDeElementos(7,     [0,0,0,0,0,0,1,1,1,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(6,     [0,0,0,0,0,1,1,0,1,1,0,0,0,0,0])
-        self.dibujarLineaDeElementos(5,     [0,0,0,0,0,0,1,1,1,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(4,     [0,0,0,3,0,0,0,1,0,0,0,3,0,0,0])
+        self.dibujarLineaDeElementos(8,     [0,0,0,3,0,0,0,1,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(7,     [0,0,0,0,0,0,1,0,1,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(6,     [0,0,0,0,0,1,0,0,0,1,0,0,0,0,0])
+        self.dibujarLineaDeElementos(5,     [0,0,0,0,0,0,1,0,1,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(4,     [0,0,0,0,0,0,0,1,0,0,0,3,0,0,0])
         self.dibujarLineaDeElementos(3,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])  
-        self.dibujarLineaDeElementos(2,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(2,     [0,0,0,0,5,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(1,     [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])
         self.dibujarLineaDeElementos(0,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-
 	}
 
     method borrarSala(){
@@ -149,7 +149,7 @@ object sala_1 inherits Sala(){
 }
 object sala_2 inherits Sala(){
     var property position = game.origin()
-    method image() = "sala_2.png"
+    method image() = "sala_1.png"
 
     method cargarSala(){
         self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
@@ -175,7 +175,7 @@ object sala_2 inherits Sala(){
 }
 object sala_3 inherits Sala(){
     var property position = game.origin()
-    method image() = "sala_3.png"
+    method image() = "sala_1.png"
 
     method cargarSala(){
         self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
@@ -193,14 +193,6 @@ object sala_3 inherits Sala(){
         self.dibujarLineaDeElementos(2,     [0,3,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(1,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(0,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-
-
-        // const mosca1 = new Mosca(id = 1)
-        // mosca1.agregarEnemigo(enemigos)
-        // const cv1 = new Cv(id = 2)
-        // cv1.agregarEnemigo(enemigos)
-        // const mosca2 = new Mosca(id = 3)
-        // mosca2.agregarEnemigo(enemigos)
 	}
     method borrarSala(){
         self.borrarElementos()

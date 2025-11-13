@@ -13,7 +13,7 @@ describe "Tests de personaje"{
   }
 
   test "Daño inicial de Gabi"{
-    assert.equals(6, gabi.vida())
+    assert.equals(6, gabi.danio())
   }
   
   test "Facu agarra un item de vida"{
@@ -33,9 +33,11 @@ describe "Tests de personaje"{
 }
 
 
-test "La bala destruye al enemigo"{
-  const mosca = new Mosca(position = game.at(2,3))
-  const bala = new Proyectil()
-  mosca.pegar(3, bala)
-  assert.equals(3, mosca.vida())
+describe "Tests de enemigos"{
+  test "La bala destruye al enemigo"{
+    const mosca = new Mosca(position = game.at(2,3))
+    const bala = new Proyectil()
+    mosca.pegar(3, bala)
+    assert.equals(3, mosca.vida())
+  }
 }
