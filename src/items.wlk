@@ -7,6 +7,9 @@ class Item {
   var property position = posicionAleatoria.calcular()
   
   method colisionarCon (personaje){
+   if(not game.hasVisual(self)){
+      throw new Exception(message = "Error interno: el ítem ya fue recogido o eliminado del juego.")
+    }
     personaje.agarrarItemStats(self)
   }
 }
