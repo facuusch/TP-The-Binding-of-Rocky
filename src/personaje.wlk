@@ -83,6 +83,7 @@ class Personaje {
     
   }
 
+
   method recargar(){
     game.schedule(350, {recargando = false})
   }
@@ -172,24 +173,6 @@ object spriteVida{
   
   method actualizarVida(nuevaVida) {
     self.vidaActual(nuevaVida)
-  }
-
-  method pegar(arg0, arg1){}
-  method colisionarCon(arg0){}
-}
-
-
-object spriteDanio{
-  var property danioActual = 1
-  
-  var property position = game.at(0, 14) 
-
-  //apareceria como una barra de fuerza?? al igual que con el escudo?? 
-  //hacer eso o cambiar la apariencia del personaje cuando por ejemplo supere los 6 de danio
-  method image() = "musculo_" + self.danioActual().toString() + ".png"
-  
-  method actualizarDanio(nuevoDanio) {
-    self.danioActual(nuevoDanio)
   }
 
   method pegar(arg0, arg1){}

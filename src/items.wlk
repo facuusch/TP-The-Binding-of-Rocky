@@ -21,11 +21,13 @@ class ItemBasico inherits Item{
 class ItemVida inherits Item{
   const vidaExtra = 3
   var vidaActual = 0
+  var vidaProvisoria = 0
   // override method colisionarCon(personaje){
   //   personaje.agarrarItemStats(self)
   // }
   method cambiarStats(personaje){
     vidaActual = personaje.vida()
+    vidaProvisoria = vidaExtra + vidaActual
     vidaActual += vidaExtra
     if(vidaActual > 10){
       vidaActual = 10
@@ -35,29 +37,11 @@ class ItemVida inherits Item{
   }
 }
 
-class ItemDanio inherits Item{
-  const danioExtra = 3
-  var danioActual = 0
-  // override method colisionarCon(personaje){
-  //   personaje.agarrarItemStats(self)
-  // }
-  method cambiarStats(personaje){
-    danioActual = personaje.danio()
-    danioActual += danioExtra
-
-  //le puse un limitante momentaneo que despues definiremos bien
-  if(danioActual > 8){ 
-      danioActual = 8
-     }
-    personaje.danio(danioActual)
-    spriteDanio.actualizarDanio(danioActual)
-  }
-}
-
 object oktubre inherits ItemVida{
   method image() = "oktubre.png"
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
+    if (vidaProvisoria>10){game.say(personaje, "Mi vida alcanzó el máximo posible: 10")}
     const sonido = game.sound("oktubre.mp3")
     sonido.volume(0.2)
     sonido.play()
@@ -68,19 +52,42 @@ object hamburguesa inherits ItemVida{
   method image() = "hamburguesa.png"
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
+    if (vidaProvisoria>10){game.say(personaje, "Mi vida alcanzó el máximo posible: 10")}
     const sonido = game.sound("hamburguesa.mp3")
     sonido.volume(0.2)
     sonido.play()
   }
 }
 
-object brocoli inherits ItemDanio{
+//como solo hay un item de daño lo representamos con un objeto
+object brocoli inherits Item{
   method image() = "brocoli.png"
+  const danioExtra = 3
+  var danioActual = 0
+  var danioProvisorio = 0
+
+  method cambiarStats(personaje){
+    danioActual = personaje.danio()
+    danioProvisorio = danioExtra + danioActual
+    danioActual += danioExtra
+    
+  //le puse un limitante momentaneo que despues definiremos bien
+  if(danioActual > 8){ 
+      danioActual = 8
+     }
+    personaje.danio(danioActual)
+  }
+
   override method colisionarCon(personaje){
-    personaje.agarrarItemStats(self)
-    const sonido = game.sound("brocoli.mp3")
-    sonido.volume(0.2)
-    sonido.play()
+  
+  personaje.agarrarItemStats(self)
+  
+  if (danioProvisorio<=8){game.say(personaje, "Mi daño es: " + personaje.danio())}
+  else if (danioProvisorio>8){game.say(personaje, "Mi daño alcanzó el máximo posible: 8")}
+
+  const sonido = game.sound("brocoli.mp3")
+  sonido.volume(0.2)
+  sonido.play()
   }
 }
 
