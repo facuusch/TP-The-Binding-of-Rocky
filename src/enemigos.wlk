@@ -133,7 +133,7 @@ class Mostro inherits Enemigo (vida = 12) {
   method moverDiagonal(dx, dy) {
     const nuevaPos = game.at(self.position().x() + dx, self.position().y() + dy)
 
-    if (not outOfBounds.verificar(nuevaPos)){   //chequear este if dsp pq sale warning aaaa
+    if (not outOfBounds.verificar(nuevaPos)){ 
       position = nuevaPos
       return false
     } else {
@@ -205,7 +205,7 @@ class Mostra inherits Enemigo (vida = 12){
   method moverDiagonal(dx, dy) {
     const nuevaPos = game.at(self.position().x() + dx, self.position().y() + dy)
 
-    if (not outOfBounds.verificar(nuevaPos)){   //chequear este if dsp pq sale warning aaaa
+    if (not outOfBounds.verificar(nuevaPos)){
       position = nuevaPos
       return false
     } else {

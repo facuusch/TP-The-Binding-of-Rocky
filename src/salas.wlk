@@ -77,8 +77,10 @@ class Sala{
             elemento.position(game.at(x, y))
             obstaculos.add(elemento)
         }
-
-
+        if(tipo == 10){
+            elemento = new Mostra(position = game.at(x,y), id = enemigos.size())
+            elemento.agregarEnemigo(enemigos)
+        }
         if(elemento != null){
             game.addVisual(elemento)
         }
@@ -144,7 +146,7 @@ object sala_1 inherits Sala(){
     method cargarSala(){
         self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(13,    [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])
-        self.dibujarLineaDeElementos(12,    [0,0,0,0,7,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(12,    [0,0,0,0,10,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(11,    [0,0,0,0,0,0,0,6,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(10,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(9,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
