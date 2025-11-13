@@ -68,19 +68,13 @@ Cada ítem reproduce un sonido característico al ser recogido.
 
 ---
 
-## 🧠 Conceptos del paradigma (POO) aplicados
-
-Este proyecto hace un uso intensivo de los **principios de Programación Orientada a Objetos**, presentes en Wollok:
+## 🧠 Conceptos del paradigma aplicados
 
 ### 🔹 **Clases y Objetos**
 - Se definen **clases** como `Personaje`, `Enemigo`, `Item`, `Proyectil` que sirven como moldes.  
 - Se crean **objetos concretos** (por ejemplo `blito`, `gabi`, `hamburguesa`, `brocoli`) que son instancias de esas clases o heredan de ellas.
 
-📌 Ejemplo:
-wollok
-object blito inherits Personaje(vida = 7, danio = 3)
-
-##Explicación Teórica:
+## Explicación Teórica:
 
 En el diseño del sistema de menús del juego, utilizamos objetos para representar las distintas pantallas: el menú principal, la pantalla de derrota (Game Over) y la pantalla de victoria (pantallaWin). Cada uno de estos objetos tiene su propia imagen asociada y su posición dentro del juego, lo que nos permite mostrarlos en distintos momentos del flujo del juego según corresponda.
 
