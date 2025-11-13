@@ -38,7 +38,7 @@ describe "Tests de personaje"{
   }
 
   test "Gabi agarra un item de daño y aumenta su poder de ataque"{
-    brocoli.colisionarCon(gabi)
+    espada.colisionarCon(gabi)
     assert.equals(8, gabi.danio())
   }
 

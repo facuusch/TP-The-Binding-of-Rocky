@@ -62,19 +62,19 @@ class ItemDanio inherits Item{
   }
 }
 
-object empanada inherits ItemVida{
-  method image() = "empanada.png"
+object pocion inherits ItemVida{
+  method image() = "pocion.png"
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
     if (vidaProvisoria>10){game.say(personaje, "Mi vida alcanzó el máximo posible: 10")}
-    const sonido = game.sound("comer.mp3")
+    const sonido = game.sound("pocion.mp3")
     sonido.volume(0.2)
     sonido.play()
   }
 }
 
-object hamburguesa inherits ItemVida{
-  method image() = "hamburguesa.png"
+object manzana inherits ItemVida{
+  method image() = "manzana.png"
   override method colisionarCon(personaje){
     personaje.agarrarItemStats(self)
     if (vidaProvisoria>10){game.say(personaje, "Mi vida alcanzó el máximo posible: 10")}
@@ -85,8 +85,8 @@ object hamburguesa inherits ItemVida{
 }
 
 //como solo hay un item de daño lo representamos con un objeto
-object brocoli inherits Item{
-  method image() = "brocoli.png"
+object espada inherits Item{
+  method image() = "espada.png"
   const danioExtra = 3
   var danioActual = 0
   var danioProvisorio = 0
@@ -106,11 +106,11 @@ object brocoli inherits Item{
   override method colisionarCon(personaje){
   
     personaje.agarrarItemStats(self)
-    
+
     if (danioProvisorio<=8){game.say(personaje, "Mi daño es: " + personaje.danio())}
     else if (danioProvisorio>8){game.say(personaje, "Mi daño alcanzó el máximo posible: 8")}
-  
-    const sonido = game.sound("comer.mp3")
+
+    const sonido = game.sound("espada.mp3")
     sonido.volume(0.2)
     sonido.play()
   }

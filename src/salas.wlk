@@ -12,7 +12,11 @@ import items.*
 //3 mosca
 //4 cv
 //5 mostro
-//6 mostra
+//6 item basico (disco)
+//7 empanada
+//8 hamburguesa
+//9 brocoli
+//10 mostra
 
 class Sala{
     const enemigos = []
@@ -63,17 +67,17 @@ class Sala{
             obstaculos.add(elemento)
         }
         if(tipo == 7){
-            elemento = empanada
+            elemento = pocion
             elemento.position(game.at(x, y))
             obstaculos.add(elemento)
         }
         if(tipo == 8){
-            elemento = hamburguesa
+            elemento = manzana
             elemento.position(game.at(x, y))
             obstaculos.add(elemento)
         }
         if(tipo == 9){
-            elemento = brocoli
+            elemento = espada
             elemento.position(game.at(x, y))
             obstaculos.add(elemento)
         }
@@ -144,9 +148,9 @@ object sala_1 inherits Sala(){
     method image() = "sala_1.png"
 
     method cargarSala(){
-        self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,10,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(13,    [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])
-        self.dibujarLineaDeElementos(12,    [0,0,0,0,10,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(12,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(11,    [0,0,0,0,0,0,0,6,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(10,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(9,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
@@ -156,7 +160,7 @@ object sala_1 inherits Sala(){
         self.dibujarLineaDeElementos(5,     [0,0,0,0,0,0,1,0,1,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(4,     [0,0,0,0,0,0,0,1,0,0,0,3,0,0,0])
         self.dibujarLineaDeElementos(3,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])  
-        self.dibujarLineaDeElementos(2,     [0,0,0,0,5,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(2,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,9])
         self.dibujarLineaDeElementos(1,     [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])
         self.dibujarLineaDeElementos(0,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 	}
@@ -182,7 +186,7 @@ object sala_2 inherits Sala(){
         self.dibujarLineaDeElementos(6,     [0,0,0,1,0,0,0,1,0,0,0,1,0,0,0])
         self.dibujarLineaDeElementos(5,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(4,     [0,0,0,0,0,2,0,0,0,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(3,     [0,0,0,0,0,0,0,0,0,4,0,0,0,0,0])  
+        self.dibujarLineaDeElementos(3,     [0,0,0,0,0,0,0,0,0,4,0,0,0,0,8])  
         self.dibujarLineaDeElementos(2,     [0,0,0,1,0,0,0,1,0,0,0,1,0,0,0])
         self.dibujarLineaDeElementos(1,     [0,0,0,0,0,3,0,0,2,2,2,0,0,0,0])
         self.dibujarLineaDeElementos(0,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
@@ -205,7 +209,7 @@ object sala_3 inherits Sala(){
         self.dibujarLineaDeElementos(9,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(8,     [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(7,     [0,0,0,4,0,0,0,1,0,0,0,0,4,0,0])
-        self.dibujarLineaDeElementos(6,     [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(6,     [0,7,0,0,0,0,0,1,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(5,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(4,     [0,0,0,0,0,0,0,0,0,0,0,3,0,0,0])
         self.dibujarLineaDeElementos(3,     [0,0,0,0,0,0,2,2,2,0,0,0,0,0,0])  
