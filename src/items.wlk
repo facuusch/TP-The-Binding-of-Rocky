@@ -105,13 +105,13 @@ object brocoli inherits Item{
 
   override method colisionarCon(personaje){
   
-  personaje.agarrarItemStats(self)
+    personaje.agarrarItemStats(self)
+    
+    if (danioProvisorio<=8){game.say(personaje, "Mi daño es: " + personaje.danio())}
+    else if (danioProvisorio>8){game.say(personaje, "Mi daño alcanzó el máximo posible: 8")}
   
-  if (danioProvisorio<=8){game.say(personaje, "Mi daño es: " + personaje.danio())}
-  else if (danioProvisorio>8){game.say(personaje, "Mi daño alcanzó el máximo posible: 8")}
-
-  const sonido = game.sound("comer.mp3")
-  sonido.volume(0.2)
-  sonido.play()
+    const sonido = game.sound("comer.mp3")
+    sonido.volume(0.2)
+    sonido.play()
   }
 }

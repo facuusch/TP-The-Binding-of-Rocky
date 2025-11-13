@@ -144,8 +144,8 @@ object sala_1 inherits Sala(){
     method cargarSala(){
         self.dibujarLineaDeElementos(14,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(13,    [0,2,0,0,0,0,0,0,0,0,0,0,0,2,0])
-        self.dibujarLineaDeElementos(12,    [0,0,0,0,6,0,0,0,0,0,0,0,0,0,0])
-        self.dibujarLineaDeElementos(11,    [0,0,0,0,0,0,0,7,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(12,    [0,0,0,0,7,0,0,0,0,0,0,0,0,0,0])
+        self.dibujarLineaDeElementos(11,    [0,0,0,0,0,0,0,6,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(10,    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(9,     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         self.dibujarLineaDeElementos(8,     [0,0,0,3,0,0,0,1,0,0,0,0,0,0,0])
