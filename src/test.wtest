@@ -22,7 +22,14 @@ describe "Tests de personaje"{
     assert.equals(8, facu.vida())
   }
 
-  
+  //Stats son valores de vida, daño y posicion
+  test "Manu reinicia sus stats"{
+    manu.vida(3)
+    manu.danio(4)
+    manu.reiniciarStats()
+    assert.equals(8, manu.vida())
+    assert.equals(2, manu.danio())
+  }
 }
 
 

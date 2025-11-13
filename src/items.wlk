@@ -50,7 +50,6 @@ class ItemDanio inherits Item{
       danioActual = 8
      }
     personaje.danio(danioActual)
-    spriteDanio.actualizarDanio(danioActual)
   }
 }
 
