@@ -20,7 +20,10 @@ object itemBasico inherits Item{
   var imagen = ""
   method image() = imagen
   var sonido = game.sound("")
-
+  var vidaActual = 0
+  var danioActual = 0
+  var vidaProvisoria = 0
+  var danioProvisorio = 0
 
   method setearImagenSonido(nombrePersonaje){
     imagen = "item_" + nombrePersonaje.toString() + ".png"
@@ -35,6 +38,29 @@ object itemBasico inherits Item{
     }
     personaje.agarrarItemBasico(self)
     sonido.play()
+  }
+
+  method cambiarStats(personaje){
+    vidaActual = personaje.vida()
+    vidaProvisoria = 2 + vidaActual
+    vidaActual += 2
+    if(vidaActual > 10){
+      vidaActual = 10
+    }
+    personaje.vida(vidaActual)
+    spriteVida.actualizarVida(vidaActual)
+
+    danioActual = personaje.danio()
+    danioProvisorio = 2 + danioActual
+    danioActual += 2
+    
+    if(danioActual > 8){ 
+      danioActual = 8
+    }
+    personaje.danio(danioActual)
+
+    if (danioProvisorio<=8){game.say(personaje, "Mi daño es: " + personaje.danio())}
+    else if (danioProvisorio>8){game.say(personaje, "Mi daño alcanzó el máximo posible: 8")}
   }
 }
 

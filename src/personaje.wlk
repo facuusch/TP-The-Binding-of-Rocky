@@ -37,6 +37,7 @@ class Personaje {
   method agarrarItemBasico(item){
     game.removeVisual(item)
     self.cambiarSprite(spriteAlternativo)
+    item.cambiarStats(self)
   }
 
   method agarrarItemStats(item){
