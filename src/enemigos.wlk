@@ -133,11 +133,13 @@ class Mostro inherits Enemigo {
 
   method moverDiagonal(dx, dy) {
     const nuevaPos = game.at(self.position().x() + dx, self.position().y() + dy)
+    var afuera = false
+
     if (not outOfBounds.verificar(nuevaPos)){   //chequear este if dsp pq sale warning aaaa
       position = nuevaPos
       return false
     } else {
-    return true
+    return not false
     }
   }
 
@@ -190,60 +192,39 @@ class Mostro inherits Enemigo {
 }
 
 
-class NuevoMonstruoB inherits Enemigo {
+class Mostra inherits Enemigo{
 
-  method image() = "monstruoB.png"
+  method image() = "mostro.png"
 
   //dirección actual
   var property direccion = 1
-
   //puntos clave del recorrido
-  var property inicio = game.at(14, 0)
+  var property inicio = game.at(0, 14)
   var property medio = game.at(7, 8)
-  var property fin = game.at(0, 0)
+  var property fin = game.at(14, 14)
 
-  method posInicial() {
-    position = inicio
-  }
 
   method moverDiagonal(dx, dy) {
-    const nuevaPos = position.add(dx, dy)
-    if (not outOfBounds.verificar(nuevaPos)) {
+    const nuevaPos = game.at(self.position().x() + dx, self.position().y() + dy)
+    var afuera = false
+
+    if (not outOfBounds.verificar(nuevaPos)){   //chequear este if dsp pq sale warning aaaa
       position = nuevaPos
+      return false
+    } else {
+    return not false
     }
   }
 
   override method movimiento() {
-
-    //movimiento en forma de V invertida: (14,0) a (7,8) a (0,0) y vuelve
+    var afuera
+    //movimiento en forma de V: (0,14) a (7,8) a (14,14) y vuelve
     if (direccion == 1) {
-      // sube hacia la izquierda
-      self.moverDiagonal(-1, 1)
-
-      //llegó al punto medio (7,8)
-      if (position.x() == medio.x() and position.y() == medio.y()) {
-        direccion = 2
-      }
-
-    } 
-    
-    else if (direccion == 2) {
-      //baja hacia la izquierda
-      self.moverDiagonal(-1, -1)
-
-      //llegó al final (0,1) y cambia sentido
-      if (position.x() == fin.x() and position.y() == fin.y()) {
-        direccion = -2
-      }
-
-    } 
-    
-    else if (direccion == -2) {
       //sube hacia la derecha
-      self.moverDiagonal(1, 1)
+      afuera = self.moverDiagonal(1, 1)
 
-      //volvió al medio (7,8)
-      if (position.x() == medio.x() and position.y() == medio.y()) {
+      //llegó al final (14,14) y cambia sentido
+      if (position.x() == fin.x() and position.y() == fin.y() or afuera) {
         direccion = -1
       }
 
@@ -251,12 +232,33 @@ class NuevoMonstruoB inherits Enemigo {
     
     else if (direccion == -1) {
       //baja hacia la derecha
-      self.moverDiagonal(1, -1)
+      afuera = self.moverDiagonal(1, -1)
+
+      //llegó al punto medio (7,8)
+      if (position.x() == medio.x() and position.y() == medio.y() or afuera) {
+        direccion = -2
+      }
+    } 
+    
+    else if (direccion == -2) {
+      //sube hacia la izquierda
+      afuera = self.moverDiagonal(-1, 1)
 
       //volvió al inicio y reinicia el ciclo
-      if (position.x() == inicio.x() and position.y() == inicio.y()) {
-        direccion = 1
+      if (position.x() == inicio.x() and position.y() == inicio.y() or afuera) {
+        direccion = 2
       }
     }
+    
+    else if (direccion == 2) {
+      //baja hacia la izquierda
+      afuera = self.moverDiagonal(-1, -1)
+
+      //volvió al medio (7,8)
+      if (position.x() == medio.x() and position.y() == medio.y() or afuera) {
+        direccion = 1
+      }
+
+    } 
   }
 }
