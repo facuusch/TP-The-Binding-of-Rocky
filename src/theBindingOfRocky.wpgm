@@ -6,7 +6,6 @@ import menu.*
 import enemigos.*
 
 program theBindingOfRocky {
-  game.boardGround("fondo.png")
   game.title("The binding of Rocky")
   game.width(15)
   game.height(15)
@@ -30,17 +29,17 @@ program theBindingOfRocky {
     }
   })
 
-  keyboard.right().onPressDo({
+  keyboard.right().whilePressedDo({
       if(game.hasVisual(mainMenu)){
         mainMenu.avanzarPersonaje()
       }
-    })
+    }, 500)
 
-    keyboard.left().onPressDo({
+    keyboard.left().whilePressedDo({
       if(game.hasVisual(mainMenu)){
         mainMenu.retrocederPersonaje()
       }
-    })
+    }, 500)
 
   game.start()
 }
@@ -95,31 +94,33 @@ object juego{
     game.addVisual(spriteVida)
     spriteVida.actualizarVida(player.vida())
 
-    keyboard.w().onPressDo({
+    const cd = 200
+    keyboard.w().whilePressedDo({
       player.disparar(arriba)
-    })
-    keyboard.a().onPressDo({
+    }, cd)
+    keyboard.a().whilePressedDo({
       player.disparar(izquierda)
-    })
-    keyboard.s().onPressDo({
+    }, cd)
+    keyboard.s().whilePressedDo({
       player.disparar(abajo)
-    })
-    keyboard.d().onPressDo({
+    }, cd)
+    keyboard.d().whilePressedDo({
       player.disparar(derecha)
-    })
+    }, cd)
 
   }
 
   method inicializarPersonaje(personaje){
     //
-    keyboard.up().onPressDo({ 
-      if(personaje.position().y() < game.height()-1) personaje.mover(arriba) })
-    keyboard.down().onPressDo({ 
-      if(personaje.position().y() > 0) personaje.mover(abajo) })
-    keyboard.right().onPressDo({ 
-      if (personaje.position().x() < game.width()-1) personaje.mover(derecha) })
-    keyboard.left().onPressDo({ 
-      if (personaje.position().x() > 0) personaje.mover(izquierda) })
+    const cd = 200
+    keyboard.up().whilePressedDo({ 
+      if(personaje.position().y() < game.height()-1) personaje.mover(arriba) }, cd)
+    keyboard.down().whilePressedDo({ 
+      if(personaje.position().y() > 0) personaje.mover(abajo) }, cd)
+    keyboard.right().whilePressedDo({ 
+      if (personaje.position().x() < game.width()-1) personaje.mover(derecha) }, cd)
+    keyboard.left().whilePressedDo({ 
+      if (personaje.position().x() > 0) personaje.mover(izquierda) }, cd)
     //
 
     game.onCollideDo(personaje, { elemento =>
