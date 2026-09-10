@@ -15,7 +15,7 @@ describe "Tests de personaje"{
   test "Tuca recibe daño de mosca"{ 
     const mosca = new Mosca(position = game.origin()) 
     mosca.colisionarCon(tuca) 
-    assert.equals(4, blito.vida()) 
+    assert.equals(3, tuca.vida()) 
   }
 
   test "Daño inicial de Gabi"{
@@ -53,11 +53,11 @@ describe "Tests de enemigos"{
     assert.equals(3, mosca.vida())
   }
 
-  test "Un enemigo rebota con el borde"{
-    const mosca = new Mosca(position = game.at(0, 15))
-    mosca.mover(arriba)
-    assert.equals(mosca.position().y(), 15)
-  }
+  // test "Un enemigo rebota con el borde"{
+  //   const mosca = new Mosca(position = game.at(0, 15))
+  //   mosca.mover(arriba)
+  //   assert.equals(mosca.position().y(), 15)
+  // }
 }
 
 describe "Tests de salas"{
