@@ -1,0 +1,160 @@
+import src.salas.*
+import wollok.game.*
+import personaje.*
+import items.*
+import menu.*
+import enemigos.*
+
+program theBindingOfRocky {
+  game.title("The binding of Rocky")
+  game.width(15)
+  game.height(15)
+  game.cellSize(50)
+
+  game.addVisual(mainMenu)
+  
+  
+  keyboard.enter().onPressDo({
+    if(game.hasVisual(mainMenu)){
+      game.removeVisual(mainMenu)
+      if(!juego.fueIniciado()){
+        juego.iniciarJuego()
+      } else{
+        juego.reiniciarJuego()
+      }
+    }
+    if(game.hasVisual(gameOver)){
+      game.removeVisual(gameOver)
+      game.addVisual(mainMenu)
+    }
+  })
+
+  keyboard.right().whilePressedDo({
+      if(game.hasVisual(mainMenu)){
+        mainMenu.avanzarPersonaje()
+      }
+    }, 500)
+
+    keyboard.left().whilePressedDo({
+      if(game.hasVisual(mainMenu)){
+        mainMenu.retrocederPersonaje()
+      }
+    }, 500)
+
+  game.start()
+}
+
+object juego{
+  var player = null
+  var iniciado = false
+  const salas = [sala_1, sala_2, sala_3]
+  var property salaActual = 0
+  const personajesIniciados = []
+
+  method fueIniciado() = iniciado
+  method cambiarPersonaje(){
+    player = mainMenu.obtenerPersonajeActual()
+    itemBasico.setearImagenSonido(player)
+  }
+
+  method pasarNivel(){
+    game.removeVisual(spriteVida)
+    salas.get(salaActual).borrarSala()
+    game.removeVisual(salas.get(salaActual))
+    salaActual += 1
+    if(salaActual == 3){
+      game.addVisual(pantallaWin)
+    } else{
+      game.addVisual(salas.get(salaActual))
+      salas.get(salaActual).cargarSala()
+      game.addVisual(spriteVida)
+    }
+    
+  }
+
+  method chequearTerminada(){
+    (salas.get(salaActual)).chequearVacia()
+  }
+
+  method iniciarJuego(){
+    iniciado = true
+    
+    game.addVisual(sala_1)
+    sala_1.cargarSala()
+
+    player = mainMenu.obtenerPersonajeActual()
+    itemBasico.setearImagenSonido(player)
+    if(not personajesIniciados.contains(player)){
+      self.inicializarPersonaje(player)
+      personajesIniciados.add(player)
+    }
+    game.addVisual(player)
+
+    
+    game.addVisual(spriteVida)
+    spriteVida.actualizarVida(player.vida())
+
+    const cd = 200
+    keyboard.w().whilePressedDo({
+      player.disparar(arriba)
+    }, cd)
+    keyboard.a().whilePressedDo({
+      player.disparar(izquierda)
+    }, cd)
+    keyboard.s().whilePressedDo({
+      player.disparar(abajo)
+    }, cd)
+    keyboard.d().whilePressedDo({
+      player.disparar(derecha)
+    }, cd)
+
+  }
+
+  method inicializarPersonaje(personaje){
+    //
+    const cd = 200
+    keyboard.up().whilePressedDo({ 
+      if(personaje.position().y() < game.height()-1) personaje.mover(arriba) }, cd)
+    keyboard.down().whilePressedDo({ 
+      if(personaje.position().y() > 0) personaje.mover(abajo) }, cd)
+    keyboard.right().whilePressedDo({ 
+      if (personaje.position().x() < game.width()-1) personaje.mover(derecha) }, cd)
+    keyboard.left().whilePressedDo({ 
+      if (personaje.position().x() > 0) personaje.mover(izquierda) }, cd)
+    //
+
+    game.onCollideDo(personaje, { elemento =>
+        elemento.colisionarCon(personaje)
+    })
+
+  }
+
+  method terminarJuego(){
+    player.reiniciarStats()
+    game.removeVisual(player)
+    game.removeVisual(spriteVida)
+    salas.get(salaActual).borrarSala()
+    game.removeVisual(salas.get(salaActual))
+
+    game.addVisual(gameOver)
+  }
+
+  method reiniciarJuego(){
+    salaActual = 0
+
+    player = mainMenu.obtenerPersonajeActual()
+    itemBasico.setearImagenSonido(player)
+    player.reiniciarStats()
+    if(not personajesIniciados.contains(player)){
+      self.inicializarPersonaje(player)
+      personajesIniciados.add(player)
+    }
+    
+    game.addVisual(salas.get(salaActual))
+    salas.get(salaActual).cargarSala()
+
+    game.addVisual(player)
+    game.addVisual(spriteVida)
+    spriteVida.actualizarVida(player.vida())
+  }
+}
